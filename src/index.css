@@ -17,24 +17,39 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 345 85% 35%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 345 85% 45%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 345 85% 35%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 345 85% 35%;
+
+    /* Custom design tokens */
+    --burgundy: 345 85% 35%;
+    --burgundy-light: 345 85% 45%;
+    --burgundy-dark: 345 85% 25%;
+    --cream: 45 25% 95%;
+    --text-dark: 222.2 84% 4.9%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--burgundy)), hsl(var(--burgundy-dark)));
+    --gradient-light: linear-gradient(135deg, hsl(var(--cream)), hsl(var(--background)));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--burgundy) / 0.3);
+    --shadow-soft: 0 4px 20px -4px hsl(var(--burgundy) / 0.1);
 
     --radius: 0.5rem;
 
