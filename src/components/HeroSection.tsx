@@ -3,9 +3,9 @@ import heroImage from "@/assets/hero-woman.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[600px] bg-gradient-to-r from-cream to-background">
-      <div className="container mx-auto px-4 h-full">
-        <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[600px]">
+    <section className="relative min-h-[100vh] bg-gradient-to-r from-cream to-background">
+      <div className="w-full px-4 h-full">
+        <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[100vh] max-w-7xl mx-auto">
           {/* Text Content */}
           <div className="space-y-6 lg:pr-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">

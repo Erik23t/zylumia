@@ -8,7 +8,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-primary">Nitfora</h1>
+            <h1 className="text-2xl font-bold text-primary">Zylumia</h1>
           </div>
 
           {/* Navigation - Desktop */}
