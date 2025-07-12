@@ -104,6 +104,28 @@ const ProductModal = ({ children, productName, productImage }: ProductModalProps
               <p className="font-semibold text-red-600">ATUALIZAÇÃO:</p>
               <p className="text-red-700">Devido à alta demanda durante a nossa Liquidação de Primavera, o estoque é limitado. Oferta válida enquanto durarem os estoques.</p>
             </div>
+
+            {/* Social Proof */}
+            <div className="space-y-3 pt-4">
+              <div className="flex items-center gap-3 text-sm">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                  <span className="text-green-600 font-bold">✓</span>
+                </div>
+                <p><strong>Maria S.</strong> - "Minha pele ficou incrível em apenas 5 dias!"</p>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                  <span className="text-green-600 font-bold">✓</span>
+                </div>
+                <p><strong>Ana P.</strong> - "Nunca vi resultados tão rápidos!"</p>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                  <span className="text-green-600 font-bold">✓</span>
+                </div>
+                <p><strong>Carla R.</strong> - "Produto revolucionário para a pele!"</p>
+              </div>
+            </div>
           </div>
 
           {/* Options */}

@@ -36,19 +36,25 @@ const ResultsSection = () => {
           </p>
         </div>
 
-        {/* Video Section */}
+        {/* Video Carousel Section */}
         <div className="mb-16 max-w-4xl mx-auto">
-          <div className="relative rounded-lg overflow-hidden shadow-elegant">
-            <iframe
-              src="https://app.vidzflow.com/v/8cNXgwT4gX?dq=576&ap=false&muted=false&loop=false&ctp=false&bv=false&piv=false&playsinline=false&bc=%234E5FFD&controls=play-large%2Cplay%2Cprogress%2Ccurrent-time%2Cmute%2Cvolume%2Csettings%2Cfullscreen"
-              className="w-full h-[400px] md:h-[500px]"
-              frameBorder="0"
-              allowFullScreen
-            />
-            {/* Brand Overlay */}
-            <div className="absolute top-4 right-4 bg-primary px-4 py-2 rounded">
-              <span className="text-primary-foreground font-bold text-lg">ZYLUMIA</span>
-            </div>
+          <div className="flex justify-center gap-4 overflow-x-auto pb-4">
+            {[1, 2, 3].map((index) => (
+              <div key={index} className="flex-shrink-0">
+                <div className="relative rounded-lg overflow-hidden shadow-elegant" style={{ width: '131px', height: '234px' }}>
+                  <iframe
+                    src="https://app.vidzflow.com/v/8cNXgwT4gX?dq=576&ap=false&muted=false&loop=false&ctp=false&bv=false&piv=false&playsinline=false&bc=%234E5FFD&controls=play-large%2Cplay%2Cprogress%2Ccurrent-time%2Cmute%2Cvolume%2Csettings%2Cfullscreen"
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allowFullScreen
+                  />
+                  {/* Brand Overlay */}
+                  <div className="absolute top-2 right-2 bg-red-600 px-2 py-1 rounded text-xs">
+                    <span className="text-white font-bold">ZYLUMIA</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
