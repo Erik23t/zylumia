@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import ProductModal from "@/components/ProductModal";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -88,12 +89,14 @@ const ProductsSection = () => {
                     </span>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-                    size="sm"
-                  >
-                    COMPRAR
-                  </Button>
+                  <ProductModal productName={product.name} productImage={product.image}>
+                    <Button 
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                      size="sm"
+                    >
+                      COMPRAR
+                    </Button>
+                  </ProductModal>
                 </div>
               </CardContent>
             </Card>

@@ -29,16 +29,27 @@ const ResultsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-            Resultados
+            Resultados comprovados
           </h2>
-          <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-6">
-            Resultados apoiados pela ciência
-          </h3>
-          <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Nossa pesquisa e desenvolvimento são baseados nos mais rigorosos estudos científicos, 
-            garantindo produtos eficazes e seguros para todos os tipos de pele. Cada fórmula é 
-            testada e aprovada por especialistas.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Milhares de clientes já transformaram sua pele com nossos produtos
           </p>
+        </div>
+
+        {/* Video Section */}
+        <div className="mb-16 max-w-4xl mx-auto">
+          <div className="relative rounded-lg overflow-hidden shadow-elegant">
+            <iframe
+              src="https://app.vidzflow.com/v/8cNXgwT4gX?dq=576&ap=false&muted=false&loop=false&ctp=false&bv=false&piv=false&playsinline=false&bc=%234E5FFD&controls=play-large%2Cplay%2Cprogress%2Ccurrent-time%2Cmute%2Cvolume%2Csettings%2Cfullscreen"
+              className="w-full h-[400px] md:h-[500px]"
+              frameBorder="0"
+              allowFullScreen
+            />
+            {/* Brand Overlay */}
+            <div className="absolute top-4 right-4 bg-primary px-4 py-2 rounded">
+              <span className="text-primary-foreground font-bold text-lg">ZYLUMIA</span>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

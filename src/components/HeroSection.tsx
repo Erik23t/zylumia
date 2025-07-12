@@ -1,10 +1,21 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-woman.jpg";
+import heroModel from "@/assets/hero-model.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[100vh] bg-gradient-to-r from-cream to-background">
-      <div className="w-full px-4 h-full">
+    <section className="relative min-h-[100vh] bg-gradient-to-r from-cream to-background overflow-hidden">
+      {/* Background Model Image */}
+      <div className="absolute inset-0 w-full h-full">
+        <img
+          src={heroModel}
+          alt="Modelo com pele radiante"
+          className="w-full h-full object-cover animate-[zoom_20s_ease-in-out_infinite_alternate]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-transparent" />
+      </div>
+      
+      <div className="relative w-full px-4 h-full z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[100vh] max-w-7xl mx-auto">
           {/* Text Content */}
           <div className="space-y-6 lg:pr-8">
