@@ -86,14 +86,14 @@ const ProductsSection = () => {
                     </span>
                   </div>
                   
-                  <ProductModal productName={product.name} productImage={product.image}>
-                    <Button 
-                      className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg"
-                      size="sm"
-                    >
-                      Add to Cart
-                    </Button>
-                  </ProductModal>
+                   <ProductModal productName={product.name} productImage={product.image}>
+                     <Button 
+                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 rounded-lg"
+                       size="sm"
+                     >
+                       Add to Cart
+                     </Button>
+                   </ProductModal>
                 </div>
               </CardContent>
             </Card>
