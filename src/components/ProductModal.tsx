@@ -183,7 +183,7 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
             {/* Product Image */}
             <div className="space-y-2 md:space-y-4">
-              <div className="relative">
+              <div className="relative max-w-[340px] mx-auto md:max-w-none">
                 <img 
                   src={currentProductImage} 
                   alt={productName}
