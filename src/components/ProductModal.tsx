@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,6 +13,10 @@ import testimonialUser1 from "@/assets/testimonial-user-1.webp";
 import testimonialUser2 from "@/assets/testimonial-user-2.webp";
 import testimonialUser3 from "@/assets/testimonial-user-3.webp";
 import testimonialUser4 from "@/assets/testimonial-user-4.webp";
+import carousel1 from "@/assets/product-carousel-1.webp";
+import carousel2 from "@/assets/product-carousel-2.webp";
+import carousel3 from "@/assets/product-carousel-3.webp";
+import carousel4 from "@/assets/product-carousel-4.webp";
 
 interface ProductModalProps {
   children: React.ReactNode;
@@ -50,6 +54,33 @@ const testimonials = [
 const ProductModal = ({ children, productName, productImage: propProductImage }: ProductModalProps) => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedOption, setSelectedOption] = useState(1);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 23,
+    hours: 13,
+    minutes: 28,
+    seconds: 45
+  });
+
+  const carouselImages = [carousel1, carousel2, carousel3, carousel4];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        } else if (prev.days > 0) {
+          return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
+        }
+        return prev;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const options = [
     { 
@@ -141,6 +172,30 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
 
           {/* Options */}
           <div className="space-y-4">
+            {/* Add to Cart Button */}
+            <Button 
+              size="lg" 
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-6"
+            >
+              ADICIONAR AO CARRINHO
+            </Button>
+
+            {/* Timer */}
+            <div className="bg-black text-white py-3 rounded-lg">
+              <div className="flex items-center justify-center space-x-4 text-sm">
+                <span className="font-semibold">OFERTA TERMINA EM</span>
+                <div className="flex space-x-2">
+                  <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.days}</span>
+                  <span>:</span>
+                  <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.hours}</span>
+                  <span>:</span>
+                  <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.minutes}</span>
+                  <span>:</span>
+                  <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.seconds}</span>
+                </div>
+              </div>
+            </div>
+
             <h3 className="text-center font-bold text-lg">OFERTA POR TEMPO LIMITADO</h3>
             
             <div className="space-y-3">
@@ -182,9 +237,24 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
               ))}
             </div>
 
+            <h4 className="font-bold text-lg text-center text-red-600">Mais de 5000 pessoas estão usando Zylumia</h4>
+            
+            <h5 className="font-bold text-center">Máscara de colágeno PDRN de salmão</h5>
+
+            {/* Product Carousel */}
+            <div className="grid grid-cols-4 gap-2 mb-4">
+              {carouselImages.map((image, index) => (
+                <img 
+                  key={index}
+                  src={image} 
+                  alt={`Produto ${index + 1}`}
+                  className="w-full h-20 object-cover rounded-lg"
+                />
+              ))}
+            </div>
+
             {/* Testimonials */}
             <div className="space-y-4 pt-4">
-              <h4 className="font-bold text-lg text-center text-red-600">Mais de 5000 pessoas estão usando Zylumia</h4>
               <div className="space-y-4">
                 {testimonials.map((testimonial, index) => (
                   <div key={index} className="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg">
@@ -220,12 +290,6 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
               </div>
             </div>
 
-            <Button 
-              size="lg" 
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-6"
-            >
-              ADICIONAR AO CARRINHO
-            </Button>
           </div>
         </div>
       </DialogContent>
