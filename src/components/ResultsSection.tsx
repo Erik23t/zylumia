@@ -84,136 +84,126 @@ const ResultsSection = () => {
           </Carousel>
         </div>
 
-        {/* Reviews Section */}
-        <div className="mb-16 bg-background border rounded-lg p-6 max-w-4xl mx-auto">
-          {/* Timer Header */}
-          <div className="bg-black text-white text-center py-4 rounded-lg mb-6">
-            <h3 className="text-lg font-bold">A LIQUIDAÇÃO DE VERÃO TERMINA EM</h3>
-            <div className="flex justify-center items-center gap-2 mt-2 text-2xl font-bold">
-              <span>22</span>
-              <span className="text-sm">Horas</span>
-              <span>:</span>
-              <span>06</span>
-              <span className="text-sm">Minutos</span>
-              <span>:</span>
-              <span>52</span>
-              <span className="text-sm">Segundos</span>
-            </div>
-          </div>
-
-          {/* Reviews List */}
+        {/* Science-Based Results Section */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="flex items-start gap-4 p-4 border-b">
-              <img src="/lovable-uploads/02d953f2-daed-46ca-9c9c-0f3e1a6db2af.png" alt="Raquel" className="w-12 h-12 rounded-full object-cover" />
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-2">
-                  <div>
-                    <div className="flex mb-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <h4 className="font-semibold text-sm text-primary">Raquel</h4>
-                  </div>
-                  <span className="text-xs text-muted-foreground">06/06/2025</span>
-                </div>
-                <p className="text-sm text-foreground">
-                  Melhora perceptível na profundidade das rugas após uma semana. Altamente recomendado para peles maduras.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-4 border-b">
-              <img src="/lovable-uploads/02d953f2-daed-46ca-9c9c-0f3e1a6db2af.png" alt="Jennifer" className="w-12 h-12 rounded-full object-cover" />
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-2">
-                  <div>
-                    <div className="flex mb-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <h4 className="font-semibold text-sm text-primary">Jennifer</h4>
-                  </div>
-                  <span className="text-xs text-muted-foreground">06/03/2025</span>
-                </div>
-                <p className="text-sm text-foreground">
-                  Esta máscara é revolucionária no antienvelhecimento. Minha pele parece mais fresca e firme.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-4">
-              <img src="/lovable-uploads/02d953f2-daed-46ca-9c9c-0f3e1a6db2af.png" alt="Amanda" className="w-12 h-12 rounded-full object-cover" />
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-2">
-                  <div>
-                    <div className="flex mb-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <h4 className="font-semibold text-sm text-primary">Amanda - New York, USA</h4>
-                  </div>
-                  <span className="text-xs text-muted-foreground">05/29/2025</span>
-                </div>
-                <p className="text-sm text-foreground">
-                  Resultados incríveis em apenas 2 dias! Minha pele ficou completamente renovada e muito mais jovem.
-                </p>
-              </div>
-            </div>
+            <h3 className="text-3xl font-bold">
+              Resultados <span className="text-primary">apoiados pela ciência</span>
+            </h3>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              Cada máscara é rigorosamente testada para atender aos padrões 
+              dermatológicos, garantindo uma solução de cuidado da pele segura e 
+              eficaz.
+            </p>
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {results.map((result, index) => (
-            <div key={index} className="text-center space-y-4">
-              <div className="flex justify-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                  <result.icon className="w-8 h-8 text-primary" />
+          
+          <div className="space-y-8">
+            <div className="flex items-center gap-6">
+              <div className="relative w-20 h-20">
+                <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="transparent"
+                    className="text-muted/20"
+                  />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="transparent"
+                    strokeDasharray={`${2.51 * 90} ${2.51 * 100}`}
+                    className="text-primary transition-all duration-1000 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">90%</span>
                 </div>
               </div>
-              <h4 className="font-semibold text-foreground text-lg">
-                {result.title}
-              </h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {result.description}
+              <p className="text-foreground">
+                Experimentei uma textura mais suave e uma pele mais 
+                hidratada, com menos ressecamento, em duas semanas.
               </p>
             </div>
-          ))}
+            
+            <div className="flex items-center gap-6">
+              <div className="relative w-20 h-20">
+                <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="transparent"
+                    className="text-muted/20"
+                  />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="transparent"
+                    strokeDasharray={`${2.51 * 90} ${2.51 * 100}`}
+                    className="text-primary transition-all duration-1000 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">90%</span>
+                </div>
+              </div>
+              <p className="text-foreground">
+                Notei poros mais finos, menos linhas finas e um brilho 
+                radiante — principalmente ao redor dos olhos e da testa.
+              </p>
+            </div>
+            
+            <div className="flex items-center gap-6">
+              <div className="relative w-20 h-20">
+                <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="transparent"
+                    className="text-muted/20"
+                  />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="transparent"
+                    strokeDasharray={`${2.51 * 90} ${2.51 * 100}`}
+                    className="text-primary transition-all duration-1000 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">90%</span>
+                </div>
+              </div>
+              <p className="text-foreground">
+                Notei uma pele mais brilhante e uniforme após apenas um 
+                uso.
+              </p>
+            </div>
+          </div>
         </div>
-
-        {/* Statistics */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="space-y-2">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-primary-foreground font-bold text-lg">98%</span>
-            </div>
-            <h4 className="font-semibold text-foreground">Taxa de satisfação</h4>
-            <p className="text-muted-foreground text-sm">
-              De clientes que recomendam nossos produtos
-            </p>
-          </div>
-          
-          <div className="space-y-2">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-primary-foreground font-bold text-lg">7</span>
-            </div>
-            <h4 className="font-semibold text-foreground">Dias</h4>
-            <p className="text-muted-foreground text-sm">
-              Para ver os primeiros resultados na sua pele
-            </p>
-          </div>
-          
-          <div className="space-y-2">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-primary-foreground font-bold text-lg">24h</span>
-            </div>
-            <h4 className="font-semibold text-foreground">Atendimento</h4>
-            <p className="text-muted-foreground text-sm">
-              Suporte disponível todos os dias
-            </p>
-          </div>
+        
+        <div className="mt-12 text-center">
+          <p className="text-sm text-muted-foreground italic">
+            *Esses resultados são baseados no feedback de clientes que usaram a máscara 
+            semanalmente conforme as instruções.
+          </p>
         </div>
       </div>
     </section>

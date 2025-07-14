@@ -54,13 +54,13 @@ const ProductsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {products.map((product) => (
-            <Card key={product.id} className="border border-border hover:shadow-soft transition-shadow bg-white">
+            <Card key={product.id} className="border border-border hover:shadow-elegant transition-all duration-300 hover:scale-105 bg-white group">
               <CardContent className="p-0">
-                <div className="relative">
+                <div className="relative overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-64 object-cover rounded-t-lg"
+                    className="w-full h-64 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-110"
                   />
                   {product.discount && (
                     <span className="absolute top-3 left-3 bg-black text-white px-3 py-1 rounded text-xs font-bold">
