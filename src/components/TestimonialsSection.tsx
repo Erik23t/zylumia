@@ -7,50 +7,45 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import testimonialBefore1 from "@/assets/testimonial-1-before.jpg";
-import testimonialAfter1 from "@/assets/testimonial-1-after.jpg";
-import testimonialBefore2 from "@/assets/testimonial-2-before.jpg";
-import testimonialAfter2 from "@/assets/testimonial-2-after.jpg";
-import testimonialBefore3 from "@/assets/testimonial-3-before.jpg";
+import testimonialUser1 from "@/assets/testimonial-user-1.webp";
+import testimonialUser2 from "@/assets/testimonial-user-2.webp";
+import testimonialUser3 from "@/assets/testimonial-user-3.webp";
+import testimonialUser4 from "@/assets/testimonial-user-4.webp";
+import testimonialUser5 from "@/assets/testimonial-user-5.webp";
 
 const testimonials = [
   {
     id: 1,
-    name: "Jessica Williams",
-    beforeImage: testimonialBefore1,
-    afterImage: testimonialAfter1,
+    name: "Camila Freitas",
+    image: testimonialUser1,
     text: "Nunca imaginei que algo tão simples poderia transformar tanto minha pele. Após a segunda aplicação, notei minha pele mais hidratada, luminosa e com aparência descansada. Não troco por nada!",
     rating: 5
   },
   {
     id: 2,
-    name: "Amanda Johnson",
-    beforeImage: testimonialBefore2,
-    afterImage: testimonialAfter2,
+    name: "Renata Lima",
+    image: testimonialUser2,
     text: "Sou mãe de dois, durmo pouco e minha pele vivia opaca. Essa máscara virou meu ritual noturno! Em poucos dias, senti mais firmeza, menos manchas e até elogios no trabalho. Vale cada centavo.",
     rating: 5
   },
   {
     id: 3,
-    name: "Sarah Davis",
-    beforeImage: testimonialBefore3,
-    afterImage: testimonialAfter1,
+    name: "Bruna Azevedo",
+    image: testimonialUser3,
     text: "Minha pele era extremamente sensível, e mesmo assim a máscara funcionou perfeitamente. Reduziu a vermelhidão e melhorou até a textura. Hoje, me sinto mais confiante sem maquiagem.",
     rating: 5
   },
   {
     id: 4,
-    name: "Michelle Brown",
-    beforeImage: testimonialAfter2,
-    afterImage: testimonialBefore1,
+    name: "Juliana Mendes",
+    image: testimonialUser4,
     text: "Depois dos 40, achei que nada mais faria diferença. Mas essa máscara me surpreendeu! Linhas de expressão suavizadas, pele mais uniforme e um viço que eu só via em fotos editadas. Incrível!",
     rating: 5
   },
   {
     id: 5,
-    name: "Emily Wilson",
-    beforeImage: testimonialBefore1,
-    afterImage: testimonialAfter2,
+    name: "Larissa M.",
+    image: testimonialUser5,
     text: "Tenho rotina corrida, mas não abro mão dessa máscara. É meu momento de autocuidado. A sensação de pele renovada é imediata, e o efeito a longo prazo é visível — mais firmeza e menos sinais de cansaço.",
     rating: 5
   }
@@ -66,7 +61,7 @@ const TestimonialsSection = () => {
           </h2>
         </div>
 
-        {/* Before/After Carousel */}
+        {/* Testimonials Carousel */}
         <div className="mb-8">
           <Carousel
             opts={{
@@ -80,28 +75,11 @@ const TestimonialsSection = () => {
                 <CarouselItem key={testimonial.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/2 xl:basis-1/3">
                   <div className="space-y-4">
                     <div className="relative">
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="relative">
-                          <img
-                            src={testimonial.beforeImage}
-                            alt={`${testimonial.name} - Before`}
-                            className="w-full h-64 sm:h-80 object-cover rounded-lg"
-                          />
-                          <div className="absolute top-2 left-2 bg-white/90 px-2 py-1 rounded text-xs font-bold text-gray-700">
-                            BEFORE
-                          </div>
-                        </div>
-                        <div className="relative">
-                          <img
-                            src={testimonial.afterImage}
-                            alt={`${testimonial.name} - After`}
-                            className="w-full h-64 sm:h-80 object-cover rounded-lg"
-                          />
-                          <div className="absolute top-2 right-2 bg-white/90 px-2 py-1 rounded text-xs font-bold text-gray-700">
-                            AFTER
-                          </div>
-                        </div>
-                      </div>
+                      <img
+                        src={testimonial.image}
+                        alt={`${testimonial.name} testimonial`}
+                        className="w-full h-64 sm:h-80 object-cover rounded-lg"
+                      />
                     </div>
                     
                     {/* Stars and testimonial */}
