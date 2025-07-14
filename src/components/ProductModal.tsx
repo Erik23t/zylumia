@@ -184,36 +184,36 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
             {/* Product Image */}
             <div className="space-y-2 md:space-y-4">
-              <div className="relative max-w-[340px] mx-auto md:max-w-none">
+              <div className="relative w-full max-w-[342px] mx-auto">
                 <img 
                   src={currentProductImage} 
                   alt={productName}
-                  className="w-[340px] h-48 md:h-auto object-cover rounded-lg mx-auto"
+                  className="w-[342px] h-[342px] object-cover rounded-lg mx-auto"
                 />
                 
                 {/* Navigation icons */}
                 <button 
                   onClick={prevImage}
-                  className="absolute left-1 md:left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-1 md:p-2 rounded-full shadow-md transition-colors"
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md transition-colors"
                 >
-                  <ChevronLeft size={16} className="md:w-5 md:h-5" />
+                  <ChevronLeft size={20} />
                 </button>
                 <button 
                   onClick={nextImage}
-                  className="absolute right-1 md:right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-1 md:p-2 rounded-full shadow-md transition-colors"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md transition-colors"
                 >
-                  <ChevronRight size={16} className="md:w-5 md:h-5" />
+                  <ChevronRight size={20} />
                 </button>
               </div>
               
               {/* Product Carousel Images */}
-              <div className="grid grid-cols-4 gap-1 md:gap-2">
+              <div className="grid grid-cols-4 gap-2 max-w-[342px] mx-auto">
                 {carouselImages.map((image, index) => (
                   <img 
                     key={index}
                     src={image} 
                     alt={`Produto ${index + 1}`}
-                    className={`w-full h-12 md:h-20 object-cover rounded-lg cursor-pointer border-2 transition-colors ${
+                    className={`w-[69px] h-[69px] object-cover rounded-lg cursor-pointer border-2 transition-colors ${
                       currentImageIndex === index ? 'border-primary' : 'border-transparent hover:border-primary'
                     }`}
                     onClick={() => selectImage(index)}
@@ -270,21 +270,21 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
                     )}
                     
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 md:gap-3">
-                        <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded flex items-center justify-center">
+                      <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
+                        <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded flex items-center justify-center flex-shrink-0">
                           <img src={productImage} alt="" className="w-8 h-8 md:w-8 md:h-8 object-cover rounded" />
                         </div>
-                        <div className="flex-1">
-                          <p className="font-semibold text-sm md:text-base">{option.quantity}</p>
-                          <p className="text-xs md:text-sm text-muted-foreground">{option.duration}</p>
-                          <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold">
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-sm md:text-base truncate">{option.quantity}</p>
+                          <p className="text-xs md:text-sm text-muted-foreground truncate">{option.duration}</p>
+                          <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold inline-block mt-1">
                             {option.discount}
                           </span>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-lg md:text-xl font-bold">{option.price}</p>
-                        <p className="text-xs md:text-sm text-muted-foreground line-through">{option.originalPrice}</p>
+                      <div className="text-right flex-shrink-0 ml-2">
+                        <p className="text-base md:text-xl font-bold whitespace-nowrap">{option.price}</p>
+                        <p className="text-xs md:text-sm text-muted-foreground line-through whitespace-nowrap">{option.originalPrice}</p>
                       </div>
                     </div>
                   </div>
@@ -362,117 +362,6 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
                 Do opaco ao radiante com Zylumia! Colágeno que nutre, firma e ilumina de dentro para fora. 
                 <span className="font-semibold"> Resultados visíveis, sensação real.</span> 💖
               </p>
-            </div>
-
-            {/* Extended FAQ Section */}
-            <div className="bg-gradient-to-r from-rose-100 to-pink-100 rounded-lg p-4 md:p-6 mt-3 md:mt-6">
-              <h3 className="text-center text-xl md:text-2xl font-bold mb-4 text-gray-800">
-                ❓ Dúvidas? Nós temos as respostas!
-              </h3>
-              
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="como-usar">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    📌 Como devo usar a máscara?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <div className="space-y-2">
-                      <p><strong>🕯️ Rotina Noturna:</strong> Limpe e tonifique o rosto, garantindo que a pele esteja livre de oleosidade e cremes.</p>
-                      <p><strong>📌 Aplicação:</strong> Comece com a parte inferior da máscara e depois aplique a parte superior. Pressione suavemente para garantir aderência.</p>
-                      <p><strong>Dica:</strong> Incline a cabeça para trás para facilitar o encaixe.</p>
-                      <p><strong>⏳ Duração:</strong></p>
-                      <p>• <strong>Brilho Rápido:</strong> 1 a 2 horas</p>
-                      <p>• <strong>Resultado Máximo:</strong> Deixe agir durante a noite (quando estiver completamente seca para evitar que se desloque).</p>
-                      <p><strong>💖 O Toque Final:</strong> Remova delicadamente a máscara e massageie o restante do sérum na pele.</p>
-                      <p><strong>Dica Pro:</strong> Aproveite o excesso de sérum no pescoço e colo.</p>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="quantas-mascaras">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    🎁 Quantas máscaras vêm no pacote?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <p>Cada pacote contém 4 máscaras de uso único.</p>
-                    <p>Recomendamos usar 2 máscaras por semana no primeiro mês para revitalizar sua pele. Após esse período, 1 máscara por semana ajuda a manter o brilho e a saúde da pele.</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="frequencia">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    🔁 Com que frequência devo usar?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <p>Use de 1 a 2 vezes por semana para melhores resultados. O uso regular potencializa os efeitos de firmeza, hidratação e luminosidade.</p>
-                    <p>⏲️ Deixe a máscara por no mínimo 60 minutos — idealmente de 3 a 4 horas. Ela vai ficando transparente conforme os nutrientes são absorvidos.</p>
-                    <p>🌙 <strong>Melhor opção:</strong> Utilize como máscara noturna. Ela não deixa resíduos no travesseiro.</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="outros-produtos">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    🧴 Posso usar com outros produtos de skincare?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <p>Sim! A máscara bio-colágena da Nifora pode ser integrada à sua rotina atual.</p>
-                    <p><strong>Recomendação:</strong> Sempre teste novos produtos em uma pequena área antes de aplicar no rosto todo.</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="pele-sensivel">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    👶 É indicada para pele sensível?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <p>Com certeza. A máscara foi formulada para ser suave, sem retirar a hidratação natural da pele. Ideal para todos os tipos de pele.</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="lavar-rosto">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    🧼 Preciso lavar o rosto após o uso?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <p>Não é necessário. O sérum restante pode ser massageado suavemente na pele para intensificar a hidratação.</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="ingredientes">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    🔬 Quais ingredientes a máscara contém?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <p><strong>Ingredientes principais:</strong></p>
-                    <p>Água, glicerina, propilenoglicol, betaína, carragenina, poliuretano-35, glucomanano, 1,2-hexanodiol</p>
-                    <p>Ácido hialurônico (em diferentes formas), colágeno hidrolisado, vitamina E (acetato de tocoferol), vitamina B3 (niacinamida), pantenol</p>
-                    <p>Extratos naturais: alcaçuz, cogumelo Tremella, Centella Asiática</p>
-                    <p>Peptídeos, ceramidas, cobre tripeptídeo, beta-glucano, entre outros agentes calmantes e hidratantes</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="garantia">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    💸 Garantia de satisfação?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <p>Sim! Oferecemos uma garantia de 100% de reembolso.</p>
-                    <p>Se você não perceber melhora na saúde da sua pele, devolvemos o valor pago.</p>
-                    <p>Aproveite nossa garantia de 60 dias sem riscos para testar com tranquilidade.</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="entrega">
-                  <AccordionTrigger className="text-left text-sm md:text-base">
-                    📦 Quais são os prazos de entrega?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-sm text-gray-600">
-                    <p><strong>🛠️ Tempo de Processamento:</strong> Após o pedido, levamos 1 dia útil para preparar e enviar sua encomenda.</p>
-                    <p><strong>🚚 Envio:</strong> Após a postagem, a entrega geralmente leva de 3 a 5 dias úteis, dependendo da sua localização.</p>
-                    <p><strong>📨 Rastreamento:</strong> Assim que seu pedido for enviado, você receberá um e-mail com o código de rastreio para acompanhar a entrega em tempo real.</p>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
             </div>
           </div>
         </div>
