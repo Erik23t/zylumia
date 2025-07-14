@@ -148,11 +148,25 @@ const TestimonialsSection = () => {
                         alt={`${item.name} - Antes e Depois`}
                         className="w-full h-80 sm:h-96 object-cover rounded-lg"
                       />
-                      <div className="absolute bottom-2 left-2 flex gap-2">
-                        <div className="bg-primary text-primary-foreground px-3 py-1 rounded text-xs font-semibold">
-                          Before & After
-                        </div>
+                      <div className="absolute top-2 left-2 bg-white/90 px-2 py-1 rounded text-xs font-bold text-gray-700">
+                        BEFORE
                       </div>
+                      <div className="absolute top-2 right-2 bg-white/90 px-2 py-1 rounded text-xs font-bold text-gray-700">
+                        AFTER
+                      </div>
+                    </div>
+                    
+                    {/* Stars and testimonial */}
+                    <div className="text-center space-y-2">
+                      <div className="flex justify-center">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                      <p className="text-sm font-medium text-primary">Sarah M. - California, USA</p>
+                      <p className="text-xs text-muted-foreground italic">
+                        "Incredible results! My skin was completely renewed in just 2 days of use. The collagen mask worked like magic!"
+                      </p>
                     </div>
                   </div>
                 </CarouselItem>
