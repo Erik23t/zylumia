@@ -76,7 +76,7 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-            Mais de 5000 pessoas estão Zylumia
+            Mais de 5000 pessoas usam Zylumia com resultados surpreendentes
           </h2>
         </div>
 
@@ -98,7 +98,7 @@ const TestimonialsSection = () => {
                         <img
                           src={testimonial.image}
                           alt={testimonial.name}
-                          className="w-16 h-16 rounded-full object-cover mr-4"
+                          className="w-24 h-24 rounded-full object-cover mr-4 border-4 border-primary/20"
                         />
                         <div>
                           <h4 className="font-semibold text-primary text-sm">

@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ProductModal from "@/components/ProductModal";
 import productImage from "@/assets/product-new.jpg";
+import product2Image from "@/assets/product-2-new.webp";
+import product4Image from "@/assets/product-4-new.webp";
 
 const products = [
   {
@@ -19,7 +21,7 @@ const products = [
     subtitle: "Wake Up to Glass Skin",
     price: "£21.95", 
     originalPrice: "£34.95",
-    image: productImage,
+    image: product2Image,
     discount: "SAVE 37%"
   },
   {
@@ -37,7 +39,7 @@ const products = [
     subtitle: "Wake Up to Glass Skin",
     price: "£21.95",
     originalPrice: "£34.95",
-    image: productImage,
+    image: product4Image,
     discount: "SAVE 37%"
   }
 ];
@@ -52,7 +54,7 @@ const ProductsSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {products.map((product) => (
             <Card key={product.id} className="border border-border hover:shadow-elegant transition-all duration-300 hover:scale-105 bg-white group">
               <CardContent className="p-0">
