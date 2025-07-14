@@ -156,18 +156,19 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
       <DialogContent className="max-w-sm md:max-w-4xl max-h-[95vh] overflow-y-auto p-0">
         {/* Timer - Fixed position at the top */}
         <div className="bg-black text-white py-2 md:py-3 rounded-t-lg sticky top-0 z-10">
-          <div className="flex items-center justify-between px-3 md:px-4">
+          <div className="flex items-center justify-between px-2 md:px-4">
             <span className="font-bold text-white text-sm md:text-base">Zylumia</span>
-            <div className="flex items-center space-x-1 md:space-x-2">
-              <span className="font-semibold text-xs md:text-sm">TERMINA EM</span>
+            <div className="flex items-center space-x-1 md:space-x-2 text-xs">
+              <span className="font-semibold hidden md:inline">OFERTA TERMINA EM</span>
+              <span className="font-semibold md:hidden">TERMINA EM</span>
               <div className="flex space-x-1">
-                <span className="bg-white text-black px-1.5 py-0.5 rounded text-xs font-bold min-w-[20px] text-center">{timeLeft.days}</span>
+                <span className="bg-white text-black px-1 py-1 rounded text-xs font-bold">{timeLeft.days}</span>
                 <span className="text-xs">:</span>
-                <span className="bg-white text-black px-1.5 py-0.5 rounded text-xs font-bold min-w-[20px] text-center">{timeLeft.hours}</span>
+                <span className="bg-white text-black px-1 py-1 rounded text-xs font-bold">{timeLeft.hours}</span>
                 <span className="text-xs">:</span>
-                <span className="bg-white text-black px-1.5 py-0.5 rounded text-xs font-bold min-w-[20px] text-center">{timeLeft.minutes}</span>
+                <span className="bg-white text-black px-1 py-1 rounded text-xs font-bold">{timeLeft.minutes}</span>
                 <span className="text-xs">:</span>
-                <span className="bg-white text-black px-1.5 py-0.5 rounded text-xs font-bold min-w-[20px] text-center">{timeLeft.seconds}</span>
+                <span className="bg-white text-black px-1 py-1 rounded text-xs font-bold">{timeLeft.seconds}</span>
               </div>
             </div>
           </div>
@@ -255,7 +256,7 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
                 {options.map((option) => (
                   <div 
                     key={option.id}
-                    className={`border-2 rounded-lg p-2 md:p-4 cursor-pointer transition-colors relative ${
+                    className={`border-2 rounded-lg p-3 md:p-4 cursor-pointer transition-colors relative ${
                       selectedOption === option.id 
                         ? 'border-primary bg-primary/5' 
                         : 'border-border hover:border-primary/50'
@@ -263,26 +264,26 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
                     onClick={() => setSelectedOption(option.id)}
                   >
                     {option.popular && (
-                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-2 md:px-3 py-1 text-xs font-bold rounded">
+                      <div className="absolute -top-2 right-2 md:right-4 bg-primary text-primary-foreground px-2 md:px-3 py-1 text-xs font-bold rounded">
                         MAIS POPULARES
                       </div>
                     )}
                     
-                    <div className="flex items-center justify-between w-full">
-                      <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
-                        <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded flex items-center justify-center flex-shrink-0">
-                          <img src={productImage} alt="" className="w-8 h-8 object-cover rounded" />
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 md:gap-3">
+                        <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded flex items-center justify-center">
+                          <img src={productImage} alt="" className="w-8 h-8 md:w-8 md:h-8 object-cover rounded" />
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-sm md:text-base truncate">{option.quantity}</p>
-                          <p className="text-xs md:text-sm text-muted-foreground truncate">{option.duration}</p>
-                          <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold inline-block mt-1">
+                        <div className="flex-1">
+                          <p className="font-semibold text-sm md:text-base">{option.quantity}</p>
+                          <p className="text-xs md:text-sm text-muted-foreground">{option.duration}</p>
+                          <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold">
                             {option.discount}
                           </span>
                         </div>
                       </div>
-                      <div className="text-right flex-shrink-0 ml-2">
-                        <p className="text-base md:text-xl font-bold">{option.price}</p>
+                      <div className="text-right">
+                        <p className="text-lg md:text-xl font-bold">{option.price}</p>
                         <p className="text-xs md:text-sm text-muted-foreground line-through">{option.originalPrice}</p>
                       </div>
                     </div>
@@ -363,6 +364,116 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
               </p>
             </div>
 
+            {/* Extended FAQ Section */}
+            <div className="bg-gradient-to-r from-rose-100 to-pink-100 rounded-lg p-4 md:p-6 mt-3 md:mt-6">
+              <h3 className="text-center text-xl md:text-2xl font-bold mb-4 text-gray-800">
+                ❓ Dúvidas? Nós temos as respostas!
+              </h3>
+              
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="como-usar">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    📌 Como devo usar a máscara?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <div className="space-y-2">
+                      <p><strong>🕯️ Rotina Noturna:</strong> Limpe e tonifique o rosto, garantindo que a pele esteja livre de oleosidade e cremes.</p>
+                      <p><strong>📌 Aplicação:</strong> Comece com a parte inferior da máscara e depois aplique a parte superior. Pressione suavemente para garantir aderência.</p>
+                      <p><strong>Dica:</strong> Incline a cabeça para trás para facilitar o encaixe.</p>
+                      <p><strong>⏳ Duração:</strong></p>
+                      <p>• <strong>Brilho Rápido:</strong> 1 a 2 horas</p>
+                      <p>• <strong>Resultado Máximo:</strong> Deixe agir durante a noite (quando estiver completamente seca para evitar que se desloque).</p>
+                      <p><strong>💖 O Toque Final:</strong> Remova delicadamente a máscara e massageie o restante do sérum na pele.</p>
+                      <p><strong>Dica Pro:</strong> Aproveite o excesso de sérum no pescoço e colo.</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="quantas-mascaras">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    🎁 Quantas máscaras vêm no pacote?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <p>Cada pacote contém 4 máscaras de uso único.</p>
+                    <p>Recomendamos usar 2 máscaras por semana no primeiro mês para revitalizar sua pele. Após esse período, 1 máscara por semana ajuda a manter o brilho e a saúde da pele.</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="frequencia">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    🔁 Com que frequência devo usar?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <p>Use de 1 a 2 vezes por semana para melhores resultados. O uso regular potencializa os efeitos de firmeza, hidratação e luminosidade.</p>
+                    <p>⏲️ Deixe a máscara por no mínimo 60 minutos — idealmente de 3 a 4 horas. Ela vai ficando transparente conforme os nutrientes são absorvidos.</p>
+                    <p>🌙 <strong>Melhor opção:</strong> Utilize como máscara noturna. Ela não deixa resíduos no travesseiro.</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="outros-produtos">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    🧴 Posso usar com outros produtos de skincare?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <p>Sim! A máscara bio-colágena da Nifora pode ser integrada à sua rotina atual.</p>
+                    <p><strong>Recomendação:</strong> Sempre teste novos produtos em uma pequena área antes de aplicar no rosto todo.</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="pele-sensivel">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    👶 É indicada para pele sensível?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <p>Com certeza. A máscara foi formulada para ser suave, sem retirar a hidratação natural da pele. Ideal para todos os tipos de pele.</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="lavar-rosto">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    🧼 Preciso lavar o rosto após o uso?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <p>Não é necessário. O sérum restante pode ser massageado suavemente na pele para intensificar a hidratação.</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="ingredientes">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    🔬 Quais ingredientes a máscara contém?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <p><strong>Ingredientes principais:</strong></p>
+                    <p>Água, glicerina, propilenoglicol, betaína, carragenina, poliuretano-35, glucomanano, 1,2-hexanodiol</p>
+                    <p>Ácido hialurônico (em diferentes formas), colágeno hidrolisado, vitamina E (acetato de tocoferol), vitamina B3 (niacinamida), pantenol</p>
+                    <p>Extratos naturais: alcaçuz, cogumelo Tremella, Centella Asiática</p>
+                    <p>Peptídeos, ceramidas, cobre tripeptídeo, beta-glucano, entre outros agentes calmantes e hidratantes</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="garantia">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    💸 Garantia de satisfação?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <p>Sim! Oferecemos uma garantia de 100% de reembolso.</p>
+                    <p>Se você não perceber melhora na saúde da sua pele, devolvemos o valor pago.</p>
+                    <p>Aproveite nossa garantia de 60 dias sem riscos para testar com tranquilidade.</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="entrega">
+                  <AccordionTrigger className="text-left text-sm md:text-base">
+                    📦 Quais são os prazos de entrega?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs md:text-sm text-gray-600">
+                    <p><strong>🛠️ Tempo de Processamento:</strong> Após o pedido, levamos 1 dia útil para preparar e enviar sua encomenda.</p>
+                    <p><strong>🚚 Envio:</strong> Após a postagem, a entrega geralmente leva de 3 a 5 dias úteis, dependendo da sua localização.</p>
+                    <p><strong>📨 Rastreamento:</strong> Assim que seu pedido for enviado, você receberá um e-mail com o código de rastreio para acompanhar a entrega em tempo real.</p>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </div>
         </div>
       </DialogContent>
