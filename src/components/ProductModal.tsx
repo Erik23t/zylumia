@@ -14,7 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Star, Minus, Plus } from "lucide-react";
+import { Star, Minus, Plus, ChevronLeft, ChevronRight } from "lucide-react";
 import productImage from "@/assets/product-new.jpg";
 import testimonialUser1 from "@/assets/testimonial-user-1.webp";
 import testimonialUser2 from "@/assets/testimonial-user-2.webp";
@@ -62,6 +62,7 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedOption, setSelectedOption] = useState(0);
   const [currentProductImage, setCurrentProductImage] = useState(productImage);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState({
     days: 23,
     hours: 13,
@@ -70,6 +71,23 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
   });
 
   const carouselImages = [carousel1, carousel2, carousel3, carousel4];
+
+  const nextImage = () => {
+    const nextIndex = (currentImageIndex + 1) % carouselImages.length;
+    setCurrentImageIndex(nextIndex);
+    setCurrentProductImage(carouselImages[nextIndex]);
+  };
+
+  const prevImage = () => {
+    const prevIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
+    setCurrentImageIndex(prevIndex);
+    setCurrentProductImage(carouselImages[prevIndex]);
+  };
+
+  const selectImage = (index: number) => {
+    setCurrentImageIndex(index);
+    setCurrentProductImage(carouselImages[index]);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -134,135 +152,157 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-primary mb-4">
-            Máscara de colágeno PDRN de salmão
-          </DialogTitle>
-        </DialogHeader>
-        
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Product Image */}
-          <div className="space-y-4">
-            <img 
-              src={currentProductImage} 
-              alt={productName}
-              className="w-full rounded-lg"
-            />
-            
-            {/* Product Carousel Images */}
-            <div className="grid grid-cols-4 gap-2">
-              {carouselImages.map((image, index) => (
-                <img 
-                  key={index}
-                  src={image} 
-                  alt={`Produto ${index + 1}`}
-                  className="w-full h-20 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-primary transition-colors"
-                  onClick={() => setCurrentProductImage(image)}
-                />
-              ))}
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+        {/* Timer - Fixed position at the top */}
+        <div className="bg-black text-white py-3 rounded-t-lg sticky top-0 z-10">
+          <div className="flex items-center justify-between px-4">
+            <span className="font-bold text-white">Zylumia</span>
+            <div className="flex items-center space-x-2 text-xs md:text-sm">
+              <span className="font-semibold">OFERTA TERMINA EM</span>
+              <div className="flex space-x-1">
+                <span className="bg-white text-black px-1 md:px-2 py-1 rounded text-xs md:text-sm font-bold">{timeLeft.days}</span>
+                <span>:</span>
+                <span className="bg-white text-black px-1 md:px-2 py-1 rounded text-xs md:text-sm font-bold">{timeLeft.hours}</span>
+                <span>:</span>
+                <span className="bg-white text-black px-1 md:px-2 py-1 rounded text-xs md:text-sm font-bold">{timeLeft.minutes}</span>
+                <span>:</span>
+                <span className="bg-white text-black px-1 md:px-2 py-1 rounded text-xs md:text-sm font-bold">{timeLeft.seconds}</span>
+              </div>
             </div>
-            
-            {/* Rating */}
-            <div className="flex items-center gap-2">
-              <div className="flex text-yellow-400">
-                {[1,2,3,4,5].map((star) => (
-                  <Star key={star} size={16} fill="currentColor" />
+          </div>
+        </div>
+
+        <div className="p-4 md:p-6">
+          <DialogHeader>
+            <DialogTitle className="text-xl md:text-2xl font-bold text-primary mb-4 text-center">
+              Máscara Nutritiva com Colágeno Ativo
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Product Image */}
+            <div className="space-y-4">
+              <div className="relative">
+                <img 
+                  src={currentProductImage} 
+                  alt={productName}
+                  className="w-full rounded-lg"
+                />
+                
+                {/* Navigation icons */}
+                <button 
+                  onClick={prevImage}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md transition-colors"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button 
+                  onClick={nextImage}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md transition-colors"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+              
+              {/* Product Carousel Images */}
+              <div className="grid grid-cols-4 gap-2">
+                {carouselImages.map((image, index) => (
+                  <img 
+                    key={index}
+                    src={image} 
+                    alt={`Produto ${index + 1}`}
+                    className={`w-full h-16 md:h-20 object-cover rounded-lg cursor-pointer border-2 transition-colors ${
+                      currentImageIndex === index ? 'border-primary' : 'border-transparent hover:border-primary'
+                    }`}
+                    onClick={() => selectImage(index)}
+                  />
                 ))}
               </div>
-              <span className="text-sm font-semibold">4,6/5</span>
-              <span className="text-sm text-muted-foreground">(mais de 5.000 avaliações)</span>
-            </div>
-
-            {/* Benefits */}
-            <div className="space-y-2 text-sm">
-              <p><strong>Brilho instantâneo</strong> após 1 máscara por semana</p>
-              <p>🌸 Obtenha <strong>uma pele firme, viçosa e brilhante</strong></p>
-              <p>🌿 <strong>Redução de linhas finas</strong> e rugas</p>
-              <p>🌱 <strong>Fórmula 100% vegana</strong>, limpa e livre de crueldade</p>
-              <p>🛡️ Garantia vitalícia</p>
-            </div>
-
-            {/* Alert */}
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 text-sm">
-              <p className="font-semibold text-red-600">ATUALIZAÇÃO:</p>
-              <p className="text-red-700">Devido à alta demanda durante a nossa Liquidação de Primavera, o estoque é limitado. Oferta válida enquanto durarem os estoques.</p>
-            </div>
-
-          </div>
-
-          {/* Options */}
-          <div className="space-y-4">
-            {/* Timer - Fixed position when scrolling */}
-            <div className="bg-black text-white py-3 rounded-lg sticky top-0 z-10">
-              <div className="flex items-center justify-between px-4">
-                <span className="font-bold text-white">Zylumia</span>
-                <div className="flex items-center space-x-2 text-sm">
-                  <span className="font-semibold">OFERTA TERMINA EM</span>
-                  <div className="flex space-x-1">
-                    <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.days}</span>
-                    <span>:</span>
-                    <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.hours}</span>
-                    <span>:</span>
-                    <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.minutes}</span>
-                    <span>:</span>
-                    <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.seconds}</span>
-                  </div>
+              
+              {/* Rating */}
+              <div className="flex items-center gap-2">
+                <div className="flex text-yellow-400">
+                  {[1,2,3,4,5].map((star) => (
+                    <Star key={star} size={16} fill="currentColor" />
+                  ))}
                 </div>
+                <span className="text-sm font-semibold">4,6/5</span>
+                <span className="text-sm text-muted-foreground">(mais de 5.000 avaliações)</span>
+              </div>
+
+              {/* Benefits */}
+              <div className="space-y-2 text-sm">
+                <p><strong>Brilho instantâneo</strong> após 1 máscara por semana</p>
+                <p>🌸 Obtenha <strong>uma pele firme, viçosa e brilhante</strong></p>
+                <p>🌿 <strong>Redução de linhas finas</strong> e rugas</p>
+                <p>🌱 <strong>Fórmula 100% vegana</strong>, limpa e livre de crueldade</p>
+                <p>🛡️ Garantia vitalícia</p>
+              </div>
+
+              {/* Alert */}
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 text-sm">
+                <p className="font-semibold text-red-600">ATUALIZAÇÃO:</p>
+                <p className="text-red-700">Devido à alta demanda durante a nossa Liquidação de Primavera, o estoque é limitado. Oferta válida enquanto durarem os estoques.</p>
               </div>
             </div>
 
-            <h3 className="text-center font-bold text-lg">OFERTA POR TEMPO LIMITADO</h3>
-            
-            <div className="space-y-3">
-              {options.map((option) => (
-                <div 
-                  key={option.id}
-                  className={`border-2 rounded-lg p-4 cursor-pointer transition-colors relative ${
-                    selectedOption === option.id 
-                      ? 'border-primary bg-primary/5' 
-                      : 'border-border hover:border-primary/50'
-                  }`}
-                  onClick={() => setSelectedOption(option.id)}
-                >
-                  {option.popular && (
-                    <div className="absolute -top-2 right-4 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold rounded">
-                      MAIS POPULARES
-                    </div>
-                  )}
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center">
-                        <img src={productImage} alt="" className="w-8 h-8 object-cover rounded" />
+            {/* Options */}
+            <div className="space-y-4">
+              <h3 className="text-center font-bold text-lg">OFERTA POR TEMPO LIMITADO</h3>
+              
+              <div className="space-y-3">
+                {options.map((option) => (
+                  <div 
+                    key={option.id}
+                    className={`border-2 rounded-lg p-4 cursor-pointer transition-colors relative ${
+                      selectedOption === option.id 
+                        ? 'border-primary bg-primary/5' 
+                        : 'border-border hover:border-primary/50'
+                    }`}
+                    onClick={() => setSelectedOption(option.id)}
+                  >
+                    {option.popular && (
+                      <div className="absolute -top-2 right-4 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold rounded">
+                        MAIS POPULARES
                       </div>
-                      <div>
-                        <p className="font-semibold">{option.quantity}</p>
-                        <p className="text-sm text-muted-foreground">{option.duration}</p>
-                        <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold">
-                          {option.discount}
-                        </span>
+                    )}
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center">
+                          <img src={productImage} alt="" className="w-8 h-8 object-cover rounded" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm md:text-base">{option.quantity}</p>
+                          <p className="text-xs md:text-sm text-muted-foreground">{option.duration}</p>
+                          <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold">
+                            {option.discount}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xl font-bold">{option.price}</p>
-                      <p className="text-sm text-muted-foreground line-through">{option.originalPrice}</p>
+                      <div className="text-right">
+                        <p className="text-lg md:text-xl font-bold">{option.price}</p>
+                        <p className="text-xs md:text-sm text-muted-foreground line-through">{option.originalPrice}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {/* Buy Now Button - Shows only when an option is selected */}
+              {selectedOption > 0 && (
+                <Button 
+                  size="lg" 
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-4 md:py-6"
+                >
+                  COMPRAR AGORA
+                </Button>
+              )}
             </div>
+          </div>
 
-            {/* Buy Now Button - Shows only when an option is selected */}
-            {selectedOption > 0 && (
-              <Button 
-                size="lg" 
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-6"
-              >
-                COMPRAR AGORA
-              </Button>
-            )}
-
+          {/* Bottom Section - Full width */}
+          <div className="mt-8 space-y-6">
             <h4 className="font-bold text-lg text-center text-red-600">Mais de 5000 pessoas estão usando Zylumia</h4>
             
             <h5 className="font-bold text-center">Máscara de colágeno PDRN de salmão</h5>
@@ -310,6 +350,20 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
               </video>
             </div>
 
+            {/* FAQ Section */}
+            <div className="bg-gray-50 rounded-lg p-4 md:p-6 mt-6">
+              <h3 className="font-bold text-lg mb-4">Perguntas Frequentes</h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-sm mb-2">🧼 Preciso lavar o rosto após o uso?</h4>
+                  <p className="text-sm text-gray-600">Não é necessário. O sérum restante pode ser massageado suavemente na pele para intensificar a hidratação.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm mb-2">💧 A máscara resseca a pele?</h4>
+                  <p className="text-sm text-gray-600">Não, nossa fórmula com colágeno PDRN mantém a hidratação natural da pele. Ideal para todos os tipos de pele.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </DialogContent>
