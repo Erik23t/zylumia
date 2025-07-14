@@ -152,66 +152,67 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent className="max-w-sm md:max-w-4xl max-h-[95vh] overflow-y-auto p-0">
         {/* Timer - Fixed position at the top */}
-        <div className="bg-black text-white py-3 rounded-t-lg sticky top-0 z-10">
-          <div className="flex items-center justify-between px-4">
-            <span className="font-bold text-white">Zylumia</span>
-            <div className="flex items-center space-x-2 text-xs md:text-sm">
-              <span className="font-semibold">OFERTA TERMINA EM</span>
+        <div className="bg-black text-white py-2 md:py-3 rounded-t-lg sticky top-0 z-10">
+          <div className="flex items-center justify-between px-2 md:px-4">
+            <span className="font-bold text-white text-sm md:text-base">Zylumia</span>
+            <div className="flex items-center space-x-1 md:space-x-2 text-xs">
+              <span className="font-semibold hidden md:inline">OFERTA TERMINA EM</span>
+              <span className="font-semibold md:hidden">TERMINA EM</span>
               <div className="flex space-x-1">
-                <span className="bg-white text-black px-1 md:px-2 py-1 rounded text-xs md:text-sm font-bold">{timeLeft.days}</span>
-                <span>:</span>
-                <span className="bg-white text-black px-1 md:px-2 py-1 rounded text-xs md:text-sm font-bold">{timeLeft.hours}</span>
-                <span>:</span>
-                <span className="bg-white text-black px-1 md:px-2 py-1 rounded text-xs md:text-sm font-bold">{timeLeft.minutes}</span>
-                <span>:</span>
-                <span className="bg-white text-black px-1 md:px-2 py-1 rounded text-xs md:text-sm font-bold">{timeLeft.seconds}</span>
+                <span className="bg-white text-black px-1 py-1 rounded text-xs font-bold">{timeLeft.days}</span>
+                <span className="text-xs">:</span>
+                <span className="bg-white text-black px-1 py-1 rounded text-xs font-bold">{timeLeft.hours}</span>
+                <span className="text-xs">:</span>
+                <span className="bg-white text-black px-1 py-1 rounded text-xs font-bold">{timeLeft.minutes}</span>
+                <span className="text-xs">:</span>
+                <span className="bg-white text-black px-1 py-1 rounded text-xs font-bold">{timeLeft.seconds}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="p-4 md:p-6">
+        <div className="p-2 md:p-6">
           <DialogHeader>
-            <DialogTitle className="text-xl md:text-2xl font-bold text-primary mb-4 text-center">
+            <DialogTitle className="text-lg md:text-2xl font-bold text-primary mb-2 md:mb-4 text-center">
               Máscara Nutritiva com Colágeno Ativo
             </DialogTitle>
           </DialogHeader>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
             {/* Product Image */}
-            <div className="space-y-4">
+            <div className="space-y-2 md:space-y-4">
               <div className="relative">
                 <img 
                   src={currentProductImage} 
                   alt={productName}
-                  className="w-full rounded-lg"
+                  className="w-full h-48 md:h-auto object-cover rounded-lg"
                 />
                 
                 {/* Navigation icons */}
                 <button 
                   onClick={prevImage}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md transition-colors"
+                  className="absolute left-1 md:left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-1 md:p-2 rounded-full shadow-md transition-colors"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={16} className="md:w-5 md:h-5" />
                 </button>
                 <button 
                   onClick={nextImage}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md transition-colors"
+                  className="absolute right-1 md:right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-1 md:p-2 rounded-full shadow-md transition-colors"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={16} className="md:w-5 md:h-5" />
                 </button>
               </div>
               
               {/* Product Carousel Images */}
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-4 gap-1 md:gap-2">
                 {carouselImages.map((image, index) => (
                   <img 
                     key={index}
                     src={image} 
                     alt={`Produto ${index + 1}`}
-                    className={`w-full h-16 md:h-20 object-cover rounded-lg cursor-pointer border-2 transition-colors ${
+                    className={`w-full h-12 md:h-20 object-cover rounded-lg cursor-pointer border-2 transition-colors ${
                       currentImageIndex === index ? 'border-primary' : 'border-transparent hover:border-primary'
                     }`}
                     onClick={() => selectImage(index)}
@@ -220,18 +221,18 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
               </div>
               
               {/* Rating */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 md:gap-2">
                 <div className="flex text-yellow-400">
                   {[1,2,3,4,5].map((star) => (
-                    <Star key={star} size={16} fill="currentColor" />
+                    <Star key={star} size={12} className="md:w-4 md:h-4" fill="currentColor" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold">4,6/5</span>
-                <span className="text-sm text-muted-foreground">(mais de 5.000 avaliações)</span>
+                <span className="text-xs md:text-sm font-semibold">4,6/5</span>
+                <span className="text-xs md:text-sm text-muted-foreground">(mais de 5.000 avaliações)</span>
               </div>
 
               {/* Benefits */}
-              <div className="space-y-2 text-sm">
+              <div className="space-y-1 md:space-y-2 text-xs md:text-sm">
                 <p><strong>Brilho instantâneo</strong> após 1 máscara por semana</p>
                 <p>🌸 Obtenha <strong>uma pele firme, viçosa e brilhante</strong></p>
                 <p>🌿 <strong>Redução de linhas finas</strong> e rugas</p>
@@ -240,21 +241,21 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
               </div>
 
               {/* Alert */}
-              <div className="bg-red-50 border-l-4 border-red-500 p-4 text-sm">
+              <div className="bg-red-50 border-l-4 border-red-500 p-2 md:p-4 text-xs md:text-sm">
                 <p className="font-semibold text-red-600">ATUALIZAÇÃO:</p>
                 <p className="text-red-700">Devido à alta demanda durante a nossa Liquidação de Primavera, o estoque é limitado. Oferta válida enquanto durarem os estoques.</p>
               </div>
             </div>
 
             {/* Options */}
-            <div className="space-y-4">
-              <h3 className="text-center font-bold text-lg">OFERTA POR TEMPO LIMITADO</h3>
+            <div className="space-y-2 md:space-y-4">
+              <h3 className="text-center font-bold text-sm md:text-lg">OFERTA POR TEMPO LIMITADO</h3>
               
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3">
                 {options.map((option) => (
                   <div 
                     key={option.id}
-                    className={`border-2 rounded-lg p-4 cursor-pointer transition-colors relative ${
+                    className={`border-2 rounded-lg p-2 md:p-4 cursor-pointer transition-colors relative ${
                       selectedOption === option.id 
                         ? 'border-primary bg-primary/5' 
                         : 'border-border hover:border-primary/50'
@@ -262,83 +263,84 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
                     onClick={() => setSelectedOption(option.id)}
                   >
                     {option.popular && (
-                      <div className="absolute -top-2 right-4 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold rounded">
+                      <div className="absolute -top-2 right-2 md:right-4 bg-primary text-primary-foreground px-2 md:px-3 py-1 text-xs font-bold rounded">
                         MAIS POPULARES
                       </div>
                     )}
                     
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center">
-                          <img src={productImage} alt="" className="w-8 h-8 object-cover rounded" />
+                      <div className="flex items-center gap-2 md:gap-3">
+                        <div className="w-8 h-8 md:w-12 md:h-12 bg-primary/10 rounded flex items-center justify-center">
+                          <img src={productImage} alt="" className="w-6 h-6 md:w-8 md:h-8 object-cover rounded" />
                         </div>
                         <div>
-                          <p className="font-semibold text-sm md:text-base">{option.quantity}</p>
-                          <p className="text-xs md:text-sm text-muted-foreground">{option.duration}</p>
-                          <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold">
+                          <p className="font-semibold text-xs md:text-base">{option.quantity}</p>
+                          <p className="text-xs text-muted-foreground">{option.duration}</p>
+                          <span className="text-xs bg-red-600 text-white px-1 md:px-2 py-1 rounded font-bold">
                             {option.discount}
                           </span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-lg md:text-xl font-bold">{option.price}</p>
-                        <p className="text-xs md:text-sm text-muted-foreground line-through">{option.originalPrice}</p>
+                        <p className="text-sm md:text-xl font-bold">{option.price}</p>
+                        <p className="text-xs text-muted-foreground line-through">{option.originalPrice}</p>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* Buy Now Button - Shows only when an option is selected */}
-              {selectedOption > 0 && (
-                <Button 
-                  size="lg" 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-4 md:py-6"
-                >
-                  COMPRAR AGORA
-                </Button>
-              )}
+              {/* Buy Now Button - Always visible but disabled if no option selected */}
+              <Button 
+                size="lg" 
+                className={`w-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm md:text-lg font-bold py-3 md:py-6 transition-opacity ${
+                  selectedOption === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={selectedOption === 0}
+              >
+                COMPRAR AGORA
+              </Button>
             </div>
           </div>
 
           {/* Bottom Section - Full width */}
-          <div className="mt-8 space-y-6">
-            <h4 className="font-bold text-lg text-center text-red-600">Mais de 5000 pessoas estão usando Zylumia</h4>
+          <div className="mt-4 md:mt-8 space-y-3 md:space-y-6">
+            <h4 className="font-bold text-sm md:text-lg text-center text-red-600">Mais de 5000 pessoas estão usando Zylumia</h4>
             
-            <h5 className="font-bold text-center">Máscara de colágeno PDRN de salmão</h5>
+            <h5 className="font-bold text-center text-sm md:text-base">Máscara de colágeno PDRN de salmão</h5>
 
             {/* Testimonials Carousel */}
-            <div className="space-y-4 pt-4">
+            <div className="space-y-2 md:space-y-4 pt-2 md:pt-4">
               <Carousel className="w-full">
                 <CarouselContent>
                   {testimonials.map((testimonial, index) => (
                     <CarouselItem key={index}>
-                      <div className="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg">
+                      <div className="flex flex-col items-center text-center p-2 md:p-4 bg-gray-50 rounded-lg">
                         <img 
                           src={testimonial.image} 
                           alt={testimonial.name}
-                          className="w-16 h-16 rounded-lg object-cover mb-2"
+                          className="w-12 h-12 md:w-16 md:h-16 rounded-lg object-cover mb-2"
                         />
                         <div className="flex text-yellow-400 mb-2">
                           {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star key={i} size={16} fill="currentColor" />
+                            <Star key={i} size={12} className="md:w-4 md:h-4" fill="currentColor" />
                           ))}
                         </div>
-                        <span className="font-semibold text-sm mb-2">{testimonial.name}</span>
-                        <p className="text-xs text-gray-600 leading-relaxed max-w-xs">{testimonial.comment}</p>
+                        <span className="font-semibold text-xs md:text-sm mb-2">{testimonial.name}</span>
+                        <p className="text-xs md:text-sm text-gray-600 leading-relaxed max-w-xs">{testimonial.comment}</p>
                       </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="left-0 md:left-2" />
+                <CarouselNext className="right-0 md:right-2" />
               </Carousel>
             </div>
               
             {/* Video */}
-            <div className="mt-6">
+            <div className="mt-3 md:mt-6">
               <video 
-                className="w-full rounded-lg max-w-md mx-auto"
+                className="w-full rounded-lg max-w-xs md:max-w-md mx-auto"
                 autoPlay 
                 muted 
                 loop 
@@ -351,16 +353,16 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
             </div>
 
             {/* FAQ Section */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 mt-6">
-              <h3 className="font-bold text-lg mb-4">Perguntas Frequentes</h3>
-              <div className="space-y-4">
+            <div className="bg-gray-50 rounded-lg p-2 md:p-6 mt-3 md:mt-6">
+              <h3 className="font-bold text-sm md:text-lg mb-2 md:mb-4">Perguntas Frequentes</h3>
+              <div className="space-y-2 md:space-y-4">
                 <div>
-                  <h4 className="font-semibold text-sm mb-2">🧼 Preciso lavar o rosto após o uso?</h4>
-                  <p className="text-sm text-gray-600">Não é necessário. O sérum restante pode ser massageado suavemente na pele para intensificar a hidratação.</p>
+                  <h4 className="font-semibold text-xs md:text-sm mb-1 md:mb-2">🧼 Preciso lavar o rosto após o uso?</h4>
+                  <p className="text-xs md:text-sm text-gray-600">Não é necessário. O sérum restante pode ser massageado suavemente na pele para intensificar a hidratação.</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm mb-2">💧 A máscara resseca a pele?</h4>
-                  <p className="text-sm text-gray-600">Não, nossa fórmula com colágeno PDRN mantém a hidratação natural da pele. Ideal para todos os tipos de pele.</p>
+                  <h4 className="font-semibold text-xs md:text-sm mb-1 md:mb-2">💧 A máscara resseca a pele?</h4>
+                  <p className="text-xs md:text-sm text-gray-600">Não, nossa fórmula com colágeno PDRN mantém a hidratação natural da pele. Ideal para todos os tipos de pele.</p>
                 </div>
               </div>
             </div>
