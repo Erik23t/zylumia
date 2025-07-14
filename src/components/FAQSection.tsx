@@ -8,24 +8,44 @@ import {
 
 const faqData = [
   {
-    question: "Como usar o produto?",
-    answer: "Aplique uma pequena quantidade do produto na pele limpa e seca, massageando suavemente até completa absorção. Use pela manhã e/ou à noite conforme indicado na embalagem."
+    question: "Como usar a máscara corretamente?",
+    answer: `🔹 Rotina noturna: Inicie com o rosto limpo e tonificado. Certifique-se de que a pele esteja completamente livre de oleosidade e resíduos de cremes.
+
+🔹 Aplicação: Posicione a máscara começando pela parte inferior do rosto e depois ajuste a parte superior. Pressione suavemente com as mãos para garantir que ela se acomode perfeitamente à pele.
+Dica profissional: Incline a cabeça levemente para trás para facilitar o encaixe.
+
+🔹 Tempo de uso:
+• Brilho Expresso: 1 a 2 horas
+• Resultados Máximos: Deixe agir durante a noite para potencializar os benefícios (certifique-se de que a máscara esteja completamente seca antes de dormir para evitar que ela se desloque).
+
+🔹 Remoção: Retire a máscara com delicadeza e massageie a pele com o restante da essência, fazendo leves batidinhas para facilitar a absorção.
+Dica profissional: Aplique também no pescoço e colo para um cuidado completo.`
   },
   {
-    question: "Quando começarei a ver os resultados?",
-    answer: "Os primeiros resultados podem ser observados em até 7 dias de uso regular. Resultados mais significativos são geralmente visíveis após 2-4 semanas de uso contínuo."
+    question: "Quantas máscaras vêm em um pacote?",
+    answer: `Cada pacote contém 4 máscaras de uso único.
+Recomendamos iniciar com 2 aplicações por semana durante o primeiro mês para resultados rápidos e visíveis.
+Após esse período, use 1 máscara por semana para manter sua pele radiante e saudável.`
   },
   {
-    question: "O produto é adequado para todos os tipos de pele?",
-    answer: "Sim, nossos produtos são formulados para serem adequados a todos os tipos de pele, incluindo peles sensíveis. Todos os produtos são testados dermatologicamente."
+    question: "Quais são os ingredientes da máscara?",
+    answer: `Nossa fórmula poderosa combina ingredientes de alta performance para garantir hidratação profunda, firmeza e rejuvenescimento:
+
+Água purificada, glicerina, propilenoglicol, betaína, carragenina sódica, poliuretano-35, glucomanan, 1,2-hexanodiol, hidroxiacetofenona, butilenoglicol, hidroxietilcelulose, pantenol, acetato de tocoferila (vitamina E), niacinamida (vitamina B3), colágeno hidrolisado, ácido hialurônico de baixo e alto peso molecular, extrato de raiz de alcaçuz, extrato de cogumelo Tremella Fuciformis, Centella Asiática, alantoína, entre outros ativos calmantes, antioxidantes e nutritivos.`
   },
   {
-    question: "Quanto tempo dura o frascos do produto?",
-    answer: "Com uso regular (duas vezes ao dia), um frasco dura aproximadamente 2-3 meses, dependendo da quantidade aplicada e da área de uso."
+    question: "E se eu não gostar? Posso ter meu dinheiro de volta?",
+    answer: `Sim! Garantimos a sua satisfação com uma devolução de 100% do valor pago, caso você não perceba uma melhora visível na sua pele.
+
+💡 Garantia estendida: Você ainda conta com uma garantia de 60 dias sem riscos para testar nosso produto com total tranquilidade.`
   },
   {
     question: "Quais são os prazos de entrega?",
-    answer: "Entregamos em todo o Brasil. O prazo varia de 3-7 dias úteis para regiões Sul e Sudeste, e 7-12 dias úteis para demais regiões. Frete grátis para compras acima de R$ 150."
+    answer: `📦 Tempo de processamento: Após a confirmação do seu pedido, ele será preparado e embalado em até 1 dia útil.
+
+🚚 Prazo de entrega: A entrega leva de 3 a 5 dias úteis, dependendo da sua localização.
+
+📬 Código de rastreamento: Assim que o pedido for enviado, você receberá um e-mail com o código de rastreio para acompanhar cada etapa da entrega.`
   }
 ];
 

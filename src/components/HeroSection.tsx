@@ -31,25 +31,31 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[100vh] bg-gray-50 overflow-hidden">
-      {/* Summer Sale Timer */}
-      <div className="absolute top-0 left-0 right-0 bg-black text-white py-2 z-20">
-        <div className="container mx-auto px-4 flex items-center justify-center space-x-4 text-sm">
-          <span className="font-semibold">SUMMER SALE ENDS IN</span>
-          <div className="flex space-x-2">
-            <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.days}</span>
-            <span>:</span>
-            <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.hours}</span>
-            <span>:</span>
-            <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.minutes}</span>
-            <span>:</span>
-            <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.seconds}</span>
+      {/* Summer Sale Timer - Sticky */}
+      <div className="fixed top-0 left-0 right-0 bg-black text-white py-3 z-50 shadow-lg">
+        <div className="container mx-auto px-4 flex flex-col items-center justify-center space-y-2">
+          <span className="font-semibold text-sm">A LIQUIDAÇÃO DE VERÃO TERMINA EM</span>
+          <div className="flex items-center space-x-4">
+            <div className="flex flex-col items-center">
+              <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.hours}</span>
+              <span className="text-xs mt-1">Hours</span>
+            </div>
+            <span className="text-lg">:</span>
+            <div className="flex flex-col items-center">
+              <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.minutes}</span>
+              <span className="text-xs mt-1">Minutes</span>
+            </div>
+            <span className="text-lg">:</span>
+            <div className="flex flex-col items-center">
+              <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.seconds}</span>
+              <span className="text-xs mt-1">Seconds</span>
+            </div>
           </div>
-          <button className="ml-4 text-white hover:opacity-80">×</button>
         </div>
       </div>
 
       {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full pt-12">
+      <div className="absolute inset-0 w-full h-full pt-20">
         <img
           src={heroImage}
           alt="Mulher com pele radiante"
@@ -58,7 +64,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/30" />
       </div>
       
-      <div className="relative w-full h-full z-10 flex flex-col items-center justify-center text-center px-4 pt-16">
+      <div className="relative w-full h-full z-10 flex flex-col items-center justify-center text-center px-4 pt-24">
         <div className="max-w-lg mx-auto space-y-6">
           {/* Logo */}
           <div className="mb-6">

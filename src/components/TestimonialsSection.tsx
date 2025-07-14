@@ -16,33 +16,42 @@ import beforeAfter2 from "@/assets/before-after-2.webp";
 import beforeAfter3 from "@/assets/before-after-3.webp";
 import beforeAfter4 from "@/assets/before-after-4.webp";
 
+import testimonialUser5 from "@/assets/testimonial-user-5.webp";
+
 const testimonials = [
   {
     id: 1,
-    name: "Marina S.",
+    name: "Camila Freitas",
     image: testimonialUser1,
-    text: "Em apenas 3 semanas de uso, minha pele ficou visivelmente mais luminosa e hidratada. Os produtos são incríveis!",
+    text: "Nunca imaginei que algo tão simples poderia transformar tanto minha pele. Após a segunda aplicação, notei minha pele mais hidratada, luminosa e com aparência descansada. Não troco por nada!",
     rating: 5
   },
   {
     id: 2,
-    name: "Carolina P.",
+    name: "Renata Lima",
     image: testimonialUser2,
-    text: "Nunca pensei que produtos de skincare pudessem fazer tanta diferença. Minha pele está muito mais saudável e radiante.",
+    text: "Sou mãe de dois, durmo pouco e minha pele vivia opaca. Essa máscara virou meu ritual noturno! Em poucos dias, senti mais firmeza, menos manchas e até elogios no trabalho. Vale cada centavo.",
     rating: 5
   },
   {
     id: 3,
-    name: "Beatriz M.",
+    name: "Bruna Azevedo",
     image: testimonialUser3,
-    text: "Produto excelente! Minha pele nunca esteve tão bonita e suave. Recomendo para todas as minhas amigas!",
+    text: "Minha pele era extremamente sensível, e mesmo assim a máscara funcionou perfeitamente. Reduziu a vermelhidão e melhorou até a textura. Hoje, me sinto mais confiante sem maquiagem.",
     rating: 5
   },
   {
     id: 4,
-    name: "Fernanda L.",
+    name: "Juliana Mendes",
     image: testimonialUser4,
-    text: "Transformação incrível! A textura da minha pele melhorou muito e as manchas diminuíram visivelmente.",
+    text: "Depois dos 40, achei que nada mais faria diferença. Mas essa máscara me surpreendeu! Linhas de expressão suavizadas, pele mais uniforme e um viço que eu só via em fotos editadas. Incrível!",
+    rating: 5
+  },
+  {
+    id: 5,
+    name: "Larissa M.",
+    image: testimonialUser5,
+    text: "Tenho rotina corrida, mas não abro mão dessa máscara. É meu momento de autocuidado. A sensação de pele renovada é imediata, e o efeito a longo prazo é visível — mais firmeza e menos sinais de cansaço.",
     rating: 5
   }
 ];
@@ -80,48 +89,28 @@ const TestimonialsSection = () => {
           </h2>
         </div>
 
-        {/* Testimonials Carousel */}
-        <div className="mb-16">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full max-w-6xl mx-auto"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {testimonials.map((testimonial) => (
-                <CarouselItem key={testimonial.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                  <Card className="bg-background border-0 shadow-soft h-full">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="flex items-center mb-4">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="w-24 h-24 rounded-full object-cover mr-4 border-4 border-primary/20"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-primary text-sm">
-                            {testimonial.name}
-                          </h4>
-                          <div className="flex mt-1">
-                            {[...Array(testimonial.rating)].map((_, i) => (
-                              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-foreground text-sm leading-relaxed flex-grow">
-                        "{testimonial.text}"
-                      </p>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
+        {/* Testimonials Grid */}
+        <div className="mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.id} className="bg-background rounded-lg shadow-soft p-6 flex flex-col items-center text-center">
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                className="w-32 h-32 rounded-full object-cover mb-4 border-4 border-primary/20"
+              />
+              <div className="flex mb-3">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <p className="text-foreground text-sm leading-relaxed mb-4">
+                "{testimonial.text}"
+              </p>
+              <p className="font-semibold text-primary text-sm">
+                – {testimonial.name}
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* Before/After Gallery */}
