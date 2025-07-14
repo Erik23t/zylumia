@@ -7,6 +7,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Star, Minus, Plus } from "lucide-react";
 import productImage from "@/assets/product-new.jpg";
 import testimonialUser1 from "@/assets/testimonial-user-1.webp";
@@ -53,7 +60,8 @@ const testimonials = [
 
 const ProductModal = ({ children, productName, productImage: propProductImage }: ProductModalProps) => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const [selectedOption, setSelectedOption] = useState(1);
+  const [selectedOption, setSelectedOption] = useState(0);
+  const [currentProductImage, setCurrentProductImage] = useState(productImage);
   const [timeLeft, setTimeLeft] = useState({
     days: 23,
     hours: 13,
@@ -137,10 +145,23 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
           {/* Product Image */}
           <div className="space-y-4">
             <img 
-              src={productImage} 
+              src={currentProductImage} 
               alt={productName}
               className="w-full rounded-lg"
             />
+            
+            {/* Product Carousel Images */}
+            <div className="grid grid-cols-4 gap-2">
+              {carouselImages.map((image, index) => (
+                <img 
+                  key={index}
+                  src={image} 
+                  alt={`Produto ${index + 1}`}
+                  className="w-full h-20 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-primary transition-colors"
+                  onClick={() => setCurrentProductImage(image)}
+                />
+              ))}
+            </div>
             
             {/* Rating */}
             <div className="flex items-center gap-2">
@@ -172,26 +193,21 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
 
           {/* Options */}
           <div className="space-y-4">
-            {/* Add to Cart Button */}
-            <Button 
-              size="lg" 
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-6"
-            >
-              ADICIONAR AO CARRINHO
-            </Button>
-
-            {/* Timer */}
-            <div className="bg-black text-white py-3 rounded-lg">
-              <div className="flex items-center justify-center space-x-4 text-sm">
-                <span className="font-semibold">OFERTA TERMINA EM</span>
-                <div className="flex space-x-2">
-                  <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.days}</span>
-                  <span>:</span>
-                  <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.hours}</span>
-                  <span>:</span>
-                  <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.minutes}</span>
-                  <span>:</span>
-                  <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.seconds}</span>
+            {/* Timer - Fixed position when scrolling */}
+            <div className="bg-black text-white py-3 rounded-lg sticky top-0 z-10">
+              <div className="flex items-center justify-between px-4">
+                <span className="font-bold text-white">Zylumia</span>
+                <div className="flex items-center space-x-2 text-sm">
+                  <span className="font-semibold">OFERTA TERMINA EM</span>
+                  <div className="flex space-x-1">
+                    <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.days}</span>
+                    <span>:</span>
+                    <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.hours}</span>
+                    <span>:</span>
+                    <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.minutes}</span>
+                    <span>:</span>
+                    <span className="bg-white text-black px-2 py-1 rounded font-bold">{timeLeft.seconds}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -237,57 +253,61 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
               ))}
             </div>
 
+            {/* Buy Now Button - Shows only when an option is selected */}
+            {selectedOption > 0 && (
+              <Button 
+                size="lg" 
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-6"
+              >
+                COMPRAR AGORA
+              </Button>
+            )}
+
             <h4 className="font-bold text-lg text-center text-red-600">Mais de 5000 pessoas estão usando Zylumia</h4>
             
             <h5 className="font-bold text-center">Máscara de colágeno PDRN de salmão</h5>
 
-            {/* Product Carousel */}
-            <div className="grid grid-cols-4 gap-2 mb-4">
-              {carouselImages.map((image, index) => (
-                <img 
-                  key={index}
-                  src={image} 
-                  alt={`Produto ${index + 1}`}
-                  className="w-full h-20 object-cover rounded-lg"
-                />
-              ))}
-            </div>
-
-            {/* Testimonials */}
+            {/* Testimonials Carousel */}
             <div className="space-y-4 pt-4">
-              <div className="space-y-4">
-                {testimonials.map((testimonial, index) => (
-                  <div key={index} className="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-16 h-16 rounded-lg object-cover mb-2"
-                    />
-                    <div className="flex text-yellow-400 mb-2">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} size={16} fill="currentColor" />
-                      ))}
-                    </div>
-                    <span className="font-semibold text-sm mb-2">{testimonial.name}</span>
-                    <p className="text-xs text-gray-600 leading-relaxed max-w-xs">{testimonial.comment}</p>
-                  </div>
-                ))}
-              </div>
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {testimonials.map((testimonial, index) => (
+                    <CarouselItem key={index}>
+                      <div className="flex flex-col items-center text-center p-4 bg-gray-50 rounded-lg">
+                        <img 
+                          src={testimonial.image} 
+                          alt={testimonial.name}
+                          className="w-16 h-16 rounded-lg object-cover mb-2"
+                        />
+                        <div className="flex text-yellow-400 mb-2">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} size={16} fill="currentColor" />
+                          ))}
+                        </div>
+                        <span className="font-semibold text-sm mb-2">{testimonial.name}</span>
+                        <p className="text-xs text-gray-600 leading-relaxed max-w-xs">{testimonial.comment}</p>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
               
-              {/* Video */}
-              <div className="mt-6">
-                <video 
-                  className="w-full rounded-lg max-w-md mx-auto"
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline
-                  controls
-                >
-                  <source src="https://storage.googleapis.com/videemio-89i/V%C3%ADdeo%20sem%20t%C3%ADtulo%20%E2%80%90%20Feito%20com%20o%20Clipchamp%20(19).mp4" type="video/mp4" />
-                  Seu navegador não suporta vídeos HTML5.
-                </video>
-              </div>
+            {/* Video */}
+            <div className="mt-6">
+              <video 
+                className="w-full rounded-lg max-w-md mx-auto"
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                controls
+              >
+                <source src="https://storage.googleapis.com/videemio-89i/V%C3%ADdeo%20sem%20t%C3%ADtulo%20%E2%80%90%20Feito%20com%20o%20Clipchamp%20(19).mp4" type="video/mp4" />
+                Seu navegador não suporta vídeos HTML5.
+              </video>
             </div>
 
           </div>
