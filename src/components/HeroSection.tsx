@@ -33,22 +33,51 @@ const HeroSection = () => {
     <section className="relative min-h-[100vh] bg-gray-50 overflow-hidden">
       {/* Summer Sale Timer - Sticky */}
       <div className="fixed top-0 left-0 right-0 bg-black text-white py-3 z-50 shadow-lg">
-        <div className="container mx-auto px-4 flex flex-col items-center justify-center space-y-2">
-          <span className="font-semibold text-sm">A LIQUIDAÇÃO DE VERÃO TERMINA EM</span>
-          <div className="flex items-center space-x-4">
-            <div className="flex flex-col items-center">
-              <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.hours}</span>
-              <span className="text-xs mt-1">Hours</span>
+        <div className="container mx-auto px-4">
+          {/* Mobile Layout */}
+          <div className="md:hidden flex items-center justify-between">
+            <div className="flex flex-col">
+              <span className="font-bold text-lg text-white">Zylumia</span>
             </div>
-            <span className="text-lg">:</span>
-            <div className="flex flex-col items-center">
-              <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.minutes}</span>
-              <span className="text-xs mt-1">Minutes</span>
+            <div className="flex flex-col items-end space-y-1">
+              <span className="font-semibold text-xs">LIQUIDAÇÃO TERMINA EM</span>
+              <div className="flex items-center space-x-2">
+                <div className="flex flex-col items-center">
+                  <span className="bg-white text-black px-2 py-1 rounded font-bold text-sm">{timeLeft.hours}</span>
+                  <span className="text-xs mt-1">Hours</span>
+                </div>
+                <span className="text-sm">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="bg-white text-black px-2 py-1 rounded font-bold text-sm">{timeLeft.minutes}</span>
+                  <span className="text-xs mt-1">Minutes</span>
+                </div>
+                <span className="text-sm">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="bg-white text-black px-2 py-1 rounded font-bold text-sm">{timeLeft.seconds}</span>
+                  <span className="text-xs mt-1">Seconds</span>
+                </div>
+              </div>
             </div>
-            <span className="text-lg">:</span>
-            <div className="flex flex-col items-center">
-              <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.seconds}</span>
-              <span className="text-xs mt-1">Seconds</span>
+          </div>
+          
+          {/* Desktop Layout */}
+          <div className="hidden md:flex flex-col items-center justify-center space-y-2">
+            <span className="font-semibold text-sm">A LIQUIDAÇÃO DE VERÃO TERMINA EM</span>
+            <div className="flex items-center space-x-4">
+              <div className="flex flex-col items-center">
+                <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.hours}</span>
+                <span className="text-xs mt-1">Hours</span>
+              </div>
+              <span className="text-lg">:</span>
+              <div className="flex flex-col items-center">
+                <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.minutes}</span>
+                <span className="text-xs mt-1">Minutes</span>
+              </div>
+              <span className="text-lg">:</span>
+              <div className="flex flex-col items-center">
+                <span className="bg-white text-black px-3 py-2 rounded font-bold text-lg">{timeLeft.seconds}</span>
+                <span className="text-xs mt-1">Seconds</span>
+              </div>
             </div>
           </div>
         </div>
