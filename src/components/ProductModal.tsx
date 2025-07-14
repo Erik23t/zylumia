@@ -252,15 +252,16 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
             <div className="space-y-2 md:space-y-4">
               <h3 className="text-center font-bold text-sm md:text-lg">OFERTA POR TEMPO LIMITADO</h3>
               
-              <div className="space-y-2 md:space-y-3">
+              <div className="space-y-2 md:space-y-3 max-w-[356px] mx-auto">
                 {options.map((option) => (
                   <div 
                     key={option.id}
-                    className={`border-2 rounded-lg p-3 md:p-4 cursor-pointer transition-colors relative ${
+                    className={`border-2 rounded-lg p-3 md:p-4 cursor-pointer transition-colors relative h-[92px] flex items-center ${
                       selectedOption === option.id 
                         ? 'border-primary bg-primary/5' 
                         : 'border-border hover:border-primary/50'
                     }`}
+                    style={{ width: '356px', height: '92px' }}
                     onClick={() => setSelectedOption(option.id)}
                   >
                     {option.popular && (
@@ -269,7 +270,7 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
                       </div>
                     )}
                     
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between w-full">
                       <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
                         <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded flex items-center justify-center flex-shrink-0">
                           <img src={productImage} alt="" className="w-8 h-8 md:w-8 md:h-8 object-cover rounded" />
@@ -291,52 +292,66 @@ const ProductModal = ({ children, productName, productImage: propProductImage }:
                 ))}
               </div>
 
-              {/* Buy Now Button - Always visible but disabled if no option selected */}
-              <Button 
-                size="lg" 
-                className={`w-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm md:text-lg font-bold py-3 md:py-6 transition-opacity ${
-                  selectedOption === 0 ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
-                disabled={selectedOption === 0}
-              >
-                COMPRAR AGORA
-              </Button>
+              {/* Buy Now Button */}
+              <div className="max-w-[356px] mx-auto">
+                <Button 
+                  size="lg" 
+                  className={`w-full bg-black hover:bg-black/90 text-white text-sm md:text-lg font-bold transition-opacity ${
+                    selectedOption === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                  style={{ width: '356px', height: '64px' }}
+                  disabled={selectedOption === 0}
+                >
+                  COMPRAR AGORA
+                </Button>
+              </div>
+
+              {/* Testimonials Section */}
+              <div className="mt-6 max-w-[356px] mx-auto">
+                <h4 className="font-bold text-sm md:text-lg text-center text-primary mb-4">
+                  Mais de 5000 pessoas usam Zylumia com resultados surpreendentes
+                </h4>
+                
+                {/* Testimonials Carousel */}
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {testimonials.map((testimonial, index) => (
+                      <CarouselItem key={index}>
+                        <div className="space-y-2">
+                          <div className="relative">
+                            <img
+                              src={testimonial.image}
+                              alt={`${testimonial.name} testimonial`}
+                              className="w-full h-48 object-cover rounded-lg"
+                            />
+                          </div>
+                          
+                          {/* Stars and testimonial */}
+                          <div className="text-center space-y-2">
+                            <div className="flex justify-center">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                              ))}
+                            </div>
+                            <p className="text-sm font-medium text-primary">{testimonial.name}</p>
+                            <p className="text-xs text-muted-foreground italic">
+                              "{testimonial.comment}"
+                            </p>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-0" />
+                  <CarouselNext className="right-0" />
+                </Carousel>
+              </div>
             </div>
           </div>
 
           {/* Bottom Section - Full width */}
           <div className="mt-4 md:mt-8 space-y-3 md:space-y-6">
-            <h4 className="font-bold text-sm md:text-lg text-center text-red-600">Mais de 5000 pessoas estão usando Zylumia</h4>
-            
             <h5 className="font-bold text-center text-sm md:text-base">Máscara de colágeno PDRN de salmão</h5>
-
-            {/* Testimonials Carousel */}
-            <div className="space-y-2 md:space-y-4 pt-2 md:pt-4">
-              <Carousel className="w-full">
-                <CarouselContent>
-                  {testimonials.map((testimonial, index) => (
-                    <CarouselItem key={index}>
-                      <div className="flex flex-col items-center text-center p-2 md:p-4 bg-gray-50 rounded-lg">
-                        <img 
-                          src={testimonial.image} 
-                          alt={testimonial.name}
-                          className="w-12 h-12 md:w-16 md:h-16 rounded-lg object-cover mb-2"
-                        />
-                        <div className="flex text-yellow-400 mb-2">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star key={i} size={12} className="md:w-4 md:h-4" fill="currentColor" />
-                          ))}
-                        </div>
-                        <span className="font-semibold text-xs md:text-sm mb-2">{testimonial.name}</span>
-                        <p className="text-xs md:text-sm text-gray-600 leading-relaxed max-w-xs">{testimonial.comment}</p>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-0 md:left-2" />
-                <CarouselNext className="right-0 md:right-2" />
-              </Carousel>
-            </div>
               
             {/* Video */}
             <div className="mt-3 md:mt-6">
