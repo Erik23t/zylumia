@@ -1,47 +1,44 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ProductModal from "@/components/ProductModal";
-import product1 from "@/assets/product-1.jpg";
-import product2 from "@/assets/product-2.jpg";
-import product3 from "@/assets/product-3.jpg";
-import product4 from "@/assets/product-4.jpg";
+import productImage from "@/assets/product-new.jpg";
 
 const products = [
   {
     id: 1,
-    name: "Vitamina C 15% Brightening Serum",
-    description: "Antioxidante | Hidratante",
-    price: "R$ 89,90",
-    originalPrice: "R$ 109,90",
-    image: product1,
-    badge: "Mais vendido"
+    name: "Bio-Collagen Mask",
+    subtitle: "Wake Up to Glass Skin",
+    price: "£21.95",
+    originalPrice: "£34.95",
+    image: productImage,
+    discount: "SAVE 37%"
   },
   {
     id: 2,
-    name: "Vitamina C 10% Smoothing Serum",
-    description: "Antioxidante | Hidratante",
-    price: "R$ 79,90", 
-    originalPrice: "R$ 99,90",
-    image: product2,
-    badge: "Mais vendido"
+    name: "Bio-Collagen Mask",
+    subtitle: "Wake Up to Glass Skin",
+    price: "£21.95", 
+    originalPrice: "£34.95",
+    image: productImage,
+    discount: "SAVE 37%"
   },
   {
     id: 3,
-    name: "Vitamina B3 1% Hydrating Serum",
-    description: "Hidratante | Suavizante",
-    price: "R$ 69,90",
-    originalPrice: "R$ 89,90", 
-    image: product3,
-    badge: "Mais vendido"
+    name: "Bio-Collagen Mask",
+    subtitle: "Wake Up to Glass Skin",
+    price: "£21.95",
+    originalPrice: "£34.95", 
+    image: productImage,
+    discount: "SAVE 37%"
   },
   {
     id: 4,
-    name: "Ácido Hialurônico 2% Radiant Serum",
-    description: "Antioxidante | Anti-idade",
-    price: "R$ 99,90",
-    originalPrice: "R$ 119,90",
-    image: product4,
-    badge: "Mais vendido"
+    name: "Bio-Collagen Mask",
+    subtitle: "Wake Up to Glass Skin",
+    price: "£21.95",
+    originalPrice: "£34.95",
+    image: productImage,
+    discount: "SAVE 37%"
   }
 ];
 
@@ -57,7 +54,7 @@ const ProductsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {products.map((product) => (
-            <Card key={product.id} className="border border-border hover:shadow-soft transition-shadow">
+            <Card key={product.id} className="border border-border hover:shadow-soft transition-shadow bg-white">
               <CardContent className="p-0">
                 <div className="relative">
                   <img
@@ -65,36 +62,36 @@ const ProductsSection = () => {
                     alt={product.name}
                     className="w-full h-64 object-cover rounded-t-lg"
                   />
-                  {product.badge && (
-                    <span className="absolute top-3 left-3 bg-primary text-primary-foreground px-2 py-1 rounded text-xs font-semibold">
-                      {product.badge}
+                  {product.discount && (
+                    <span className="absolute top-3 left-3 bg-black text-white px-3 py-1 rounded text-xs font-bold">
+                      {product.discount}
                     </span>
                   )}
                 </div>
                 
-                <div className="p-4 space-y-3">
-                  <h3 className="font-semibold text-foreground text-sm leading-tight">
+                <div className="p-4 space-y-3 text-center">
+                  <div className="text-red-600 text-sm font-medium">
+                    {product.subtitle}
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-lg">
                     {product.name}
                   </h3>
-                  <p className="text-xs text-muted-foreground">
-                    {product.description}
-                  </p>
                   
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg font-bold text-foreground">
+                  <div className="flex items-center justify-center space-x-2">
+                    <span className="text-xl font-bold text-red-600">
                       {product.price}
                     </span>
-                    <span className="text-sm text-muted-foreground line-through">
+                    <span className="text-sm text-gray-500 line-through">
                       {product.originalPrice}
                     </span>
                   </div>
                   
                   <ProductModal productName={product.name} productImage={product.image}>
                     <Button 
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                      className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg"
                       size="sm"
                     >
-                      COMPRAR
+                      Add to Cart
                     </Button>
                   </ProductModal>
                 </div>

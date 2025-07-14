@@ -36,25 +36,30 @@ const ResultsSection = () => {
           </p>
         </div>
 
-        {/* Video Carousel Section */}
+        {/* Video Section */}
         <div className="mb-16 max-w-4xl mx-auto">
-          <div className="flex justify-center gap-4 overflow-x-auto pb-4">
-            {[1, 2, 3].map((index) => (
-              <div key={index} className="flex-shrink-0">
-                <div className="relative rounded-lg overflow-hidden shadow-elegant" style={{ width: '131px', height: '234px' }}>
-                  <iframe
-                    src="https://app.vidzflow.com/v/8cNXgwT4gX?dq=576&ap=false&muted=false&loop=false&ctp=false&bv=false&piv=false&playsinline=false&bc=%234E5FFD&controls=play-large%2Cplay%2Cprogress%2Ccurrent-time%2Cmute%2Cvolume%2Csettings%2Cfullscreen"
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allowFullScreen
-                  />
-                  {/* Brand Overlay */}
-                  <div className="absolute top-2 right-2 bg-red-600 px-2 py-1 rounded text-xs">
-                    <span className="text-white font-bold">ZYLUMIA</span>
-                  </div>
-                </div>
+          <div className="flex justify-center">
+            <div className="relative rounded-lg overflow-hidden shadow-elegant w-full max-w-md">
+              <video
+                className="w-full h-auto"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                onClick={(e) => {
+                  const video = e.target as HTMLVideoElement;
+                  video.muted = false;
+                }}
+              >
+                <source src="https://storage.googleapis.com/videemio-89i/V%C3%ADdeo%20sem%20t%C3%ADtulo%20%E2%80%90%20Feito%20com%20o%20Clipchamp%20(19).mp4" type="video/mp4" />
+                Seu navegador não suporta o elemento de vídeo.
+              </video>
+              {/* Brand Overlay */}
+              <div className="absolute top-2 right-2 bg-red-600 px-2 py-1 rounded text-xs">
+                <span className="text-white font-bold">ZYLUMIA</span>
               </div>
-            ))}
+            </div>
           </div>
         </div>
 

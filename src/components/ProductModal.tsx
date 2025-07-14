@@ -8,6 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Star, Minus, Plus } from "lucide-react";
+import productImage from "@/assets/product-new.jpg";
 
 interface ProductModalProps {
   children: React.ReactNode;
@@ -15,7 +16,28 @@ interface ProductModalProps {
   productImage: string;
 }
 
-const ProductModal = ({ children, productName, productImage }: ProductModalProps) => {
+const testimonials = [
+  {
+    name: "Marina S.",
+    comment: "Em apenas 3 semanas de uso, minha pele ficou visivelmente mais luminosa e hidratada. Os produtos são incríveis!",
+    rating: 5,
+    image: "/lovable-uploads/d9d8377d-3d42-4b57-8970-33c04cbb9d80.png"
+  },
+  {
+    name: "Carolina P.", 
+    comment: "Nunca pensei que produtos de skincare pudessem fazer tanta diferença. Minha pele está muito mais saudável e radiante.",
+    rating: 5,
+    image: "/lovable-uploads/d9d8377d-3d42-4b57-8970-33c04cbb9d80.png"
+  },
+  {
+    name: "Beatriz M.",
+    comment: "Produto excelente! Minha pele nunca esteve tão bonita e suave. Recomendo para todas as minhas amigas!",
+    rating: 5,
+    image: "/lovable-uploads/d9d8377d-3d42-4b57-8970-33c04cbb9d80.png"
+  }
+];
+
+const ProductModal = ({ children, productName, productImage: propProductImage }: ProductModalProps) => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedOption, setSelectedOption] = useState(1);
 
@@ -105,25 +127,28 @@ const ProductModal = ({ children, productName, productImage }: ProductModalProps
               <p className="text-red-700">Devido à alta demanda durante a nossa Liquidação de Primavera, o estoque é limitado. Oferta válida enquanto durarem os estoques.</p>
             </div>
 
-            {/* Social Proof */}
-            <div className="space-y-3 pt-4">
-              <div className="flex items-center gap-3 text-sm">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 font-bold">✓</span>
-                </div>
-                <p><strong>Maria S.</strong> - "Minha pele ficou incrível em apenas 5 dias!"</p>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 font-bold">✓</span>
-                </div>
-                <p><strong>Ana P.</strong> - "Nunca vi resultados tão rápidos!"</p>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 font-bold">✓</span>
-                </div>
-                <p><strong>Carla R.</strong> - "Produto revolucionário para a pele!"</p>
+            {/* Testimonials */}
+            <div className="space-y-4 pt-4">
+              <h4 className="font-bold text-lg text-center text-red-600">Mais de 5000 pessoas estão Zylumia</h4>
+              <div className="space-y-4">
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      {testimonial.name.split(' ')[0][0]}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold text-sm">{testimonial.name}</span>
+                        <div className="flex text-yellow-400">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} size={12} fill="currentColor" />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-xs text-gray-600">{testimonial.comment}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
