@@ -78,8 +78,7 @@ const TestimonialsSection = () => {
                       <img
                         src={testimonial.image}
                         alt={`${testimonial.name} testimonial`}
-                        className="object-cover rounded-lg"
-                        style={{ width: '280px', height: '358px' }}
+                        className="w-full h-64 sm:h-80 object-cover rounded-lg"
                       />
                     </div>
                     
