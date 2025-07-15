@@ -6,6 +6,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import carousel1 from "@/assets/carousel-1.webp";
+import carousel2 from "@/assets/carousel-2.webp";
+import carousel3 from "@/assets/carousel-3.webp";
+import carousel4 from "@/assets/carousel-4.webp";
 
 const results = [
   {
@@ -27,6 +31,29 @@ const results = [
     icon: Zap,
     title: "Resultados em até 7 dias",
     description: "Veja a diferença na sua pele em apenas uma semana"
+  }
+];
+
+const customerTestimonials = [
+  {
+    name: "Sarah Johnson",
+    image: carousel1,
+    comment: "Estou absolutamente encantada com os resultados! Minha pele nunca esteve tão radiante e suave. Recebi tantos elogios desde que comecei a usar."
+  },
+  {
+    name: "Jessica Smith",
+    image: carousel2,
+    comment: "Que experiência incrível! A entrega foi super rápida e o produto superou todas as minhas expectativas. Minha pele está visivelmente mais jovem!"
+  },
+  {
+    name: "Amanda Davis",
+    image: carousel3,
+    comment: "Finalmente encontrei o produto perfeito para minha pele! Os resultados apareceram em poucos dias e não paro de receber elogios. Recomendo para todas!"
+  },
+  {
+    name: "Michelle Brown",
+    image: carousel4,
+    comment: "Estou muito satisfeita com minha compra! A qualidade é excepcional e os resultados são exatamente como prometido. Minha autoestima aumentou muito!"
   }
 ];
 
@@ -197,6 +224,41 @@ const ResultsSection = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Customer Testimonials Carousel */}
+        <div className="mt-16 mb-12 max-w-4xl mx-auto">
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {customerTestimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                  <div className="relative rounded-lg overflow-hidden shadow-elegant bg-card p-6">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-[360px] h-[500px] object-cover rounded-lg"
+                      />
+                      <div className="space-y-2">
+                        <h4 className="font-semibold text-lg text-foreground">{testimonial.name}</h4>
+                        <p className="text-sm text-muted-foreground italic leading-relaxed">
+                          "{testimonial.comment}"
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
         </div>
         
         <div className="mt-12 text-center">
