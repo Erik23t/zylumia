@@ -1,6 +1,16 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-woman-new.webp";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import hero1 from "@/assets/hero-1.webp";
+import hero2 from "@/assets/hero-2.webp";
+import hero3 from "@/assets/hero-3.webp";
 import { useState, useEffect } from "react";
+import Autoplay from "embla-carousel-autoplay";
+
+const heroImages = [hero1, hero2, hero3];
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -83,14 +93,36 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Background Image */}
+      {/* Background Carousel */}
       <div className="absolute inset-0 w-full h-full pt-20">
-        <img
-          src={heroImage}
-          alt="Mulher com pele radiante"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/30" />
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 4000,
+            }),
+          ]}
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full h-full"
+        >
+          <CarouselContent className="w-full h-full">
+            {heroImages.map((image, index) => (
+              <CarouselItem key={index} className="w-full h-full">
+                <div className="relative w-full h-full">
+                  <img
+                    src={image}
+                    alt={`Mulher com pele radiante ${index + 1}`}
+                    className="w-full h-full object-cover"
+                    style={{ width: '390px', height: '573px', objectFit: 'cover' }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/30" />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
       
       <div className="relative w-full h-full z-10 flex flex-col items-center justify-center text-center px-4 pt-24">
